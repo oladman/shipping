@@ -107,15 +107,11 @@ session_start();
             </div>
     </section>
 
-    <?php
-$DB_HOST = "localhost";
-$DB_NAME = "code_camp_bd_fos";
-$DB_CHARSET = "utf8mb4";
-$DB_USER = "root";
-$DB_PASSWORD = "";
-$tracking = $_POST['search'];
-
-$pdo = mysqli_connect($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME);
+    //main connection file for both admin & front end
+$servername = "localhost"; //server
+$username = "root"; //username
+$password = ""; //password
+$dbname = "shipping_oceanlogistix";  //database
 
 // (C) SEARCH
 // CREATE A TEMPLATE
@@ -299,16 +295,11 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
 
 ?>
 
-    <?php
-
-$DB_HOST = "localhost";
-$DB_NAME = "code_camp_bd_fos";
-$DB_CHARSET = "utf8mb4";
-$DB_USER = "root";
-$DB_PASSWORD = "";
-$tracking = $_POST['search'];
-
-$pdo = mysqli_connect($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME);
+   //main connection file for both admin & front end
+$servername = "localhost"; //server
+$username = "root"; //username
+$password = ""; //password
+$dbname = "shipping_oceanlogistix";  //database
 
 // (C) SEARCH
 // CREATE A TEMPLATE
@@ -380,16 +371,11 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
 
 
 
-<?php
-$DB_HOST = "localhost";
-$DB_NAME = "code_camp_bd_fos";
-$DB_CHARSET = "utf8mb4";
-$DB_USER = "root";
-$DB_PASSWORD = "";
-$tracking = $_POST['search'];
-
-$pdo = mysqli_connect($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME);
-// (C) SEARCH
+//main connection file for both admin & front end
+$servername = "localhost"; //server
+$username = "root"; //username
+$password = ""; //password
+$dbname = "shipping_oceanlogistix";  //database
 // CREATE A TEMPLATE
 $sql = ("SELECT * FROM `ship_status` WHERE s_tracking = ? ORDER BY ss_id DESC ");
 
