@@ -157,7 +157,7 @@
                         <div class="page-wrapper">
                        
                             <div style="padding-top: 10px;">
-                                <marquee onMouseOver="this.stop()" onMouseOut="this.start()"> <a href="https://www.youtube.com/@codecampbdofficial">OLADMAN</a> is the sole owner of this script. For any of your problems contact me on twitter <a href="https://twitter.com/iam_oladman">Twitter</a> Github</marquee>
+                                <marquee onMouseOver="this.stop()" onMouseOut="this.start()"> <a href="https://www.youtube.com/">OLADMAN</a> is the sole owner of this script. For any of your problems contact me on twitter <a href="https://twitter.com/iam_oladman">Twitter</a> Github</marquee>
                             </div>
 
                             
@@ -174,7 +174,7 @@
 <div class="col-lg-12">
                                     <div class="card card-outline-primary">
                                         <div class="card-header">
-                                            <h4 class="m-b-0 text-white">Edit Shiping Status</h4>
+                                            <h4 class="m-b-0 text-white">Edit Shipping Status</h4>
                                         </div>
                                         <div class="card-body">
                                             <form action='' method='post' enctype="application/x-www-form-urlencoded">
@@ -209,16 +209,14 @@
                                                         <div class="col-md-6">
                                                         <div class="form-group">
                                                                 <label class="control-label">Status:</label>
-                                                                <select name="ss_status" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
-
-                                                                    
-                                                                    <option value="Order Received">Order Received</option>
-                                                                    <option value="Shipped">Shipped</option>
+                                                                <select name="ss_status" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">  
+                                                                    <option value="Received">Order Received</option>
+                                                                    <option value="In Transit">In Transit</option>
+                                                                    <option value="On-Hold">On-Hold</option>
+                                                                    <option value="To-Pay">To-Pay</option>
                                                                     <option value="Out for Delivery">Out for Delivery</option>
-                                                                    <option value="On-hold">On-hold</option>
-                                                                    <option value="Held by Custom">Held by Custom</option>
-                                                                    <option value="Arrival at Processing Center">Arrival at Processing Center</option>
-                                                                    <option value="Arrival at Destination Country">Arrival at Destination Country</option>
+                                                                    <option value="Delivered">Delivered</option>
+                                                                    
                                                                 </select>
                                                             </div>
                                                         </div>

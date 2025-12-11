@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 150" width="500" height="150">
+  <style>
+    .text { fill: #4D4D4D; font-family: Arial, sans-serif; }
+    .main { font-size: 72px; font-weight: bold; }
+    .sub { font-size: 28px; letter-spacing: 12px; font-weight: 600; }
+    .triangle { fill: #4D4D4D; }
+  </style>
+
+  <!-- "CEV" letters -->
+  <text class="text main" x="10" y="90" id="cev">CEV</text>
+
+  <!-- Triangle "A" directly touching the "V" -->
+  <path class="triangle" d="M233,90 L263,20 L293,90 Z"></path>
+
+  <!-- Bottom text "LOGISTICS" -->
+  <text class="text sub" x="10" y="135">LOGISTICS</text>
+</svg>

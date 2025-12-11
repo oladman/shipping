@@ -256,15 +256,12 @@ echo $success; ?>
                                                                 <label class="control-label">Status:</label>
                                                                 <select name="ss_status" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
 
-                                                                    <option value="">Select</option>
-                                                                    <option value="Order Delivered">Order Delivered</option>
-                                                                    <option value="Order Received">Order Received</option>
-                                                                    <option value="Shipped">Shipped</option>
+                                                                <option value="Received">Order Received</option>
+                                                                    <option value="In Transit">In Transit</option>
+                                                                    <option value="On-Hold">On-Hold</option>
+                                                                    <option value="To-Pay">To-Pay</option>
                                                                     <option value="Out for Delivery">Out for Delivery</option>
-                                                                    <option value="On-hold">On-hold</option>
-                                                                    <option value="Held by Custom">Held by Custom</option>
-                                                                    <option value="Arrival at Processing Center">Arrival at Processing Center</option>
-                                                                    <option value="Arrival at Destination Country">Arrival at Destination Country</option>
+                                                                    <option value="Delivered">Delivered</option>
                                                                 </select>
                                                             </div>
                                                         </div>

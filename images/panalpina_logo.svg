@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 80" width="300" height="80">
+  <!-- "PANALPINA" text -->
+  <text x="0" y="35" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#4D4D4D">PANALPINA</text>
+  
+  <!-- "on 6 continents" -->
+  <text x="0" y="60" font-family="Arial, sans-serif" font-size="12" fill="#4D4D4D" letter-spacing="4">on 6 continents</text>
+  
+  <!-- stylized globe + plane symbol -->
+  <g transform="translate(210,10)">
+    <path d="M10 0 L30 15 L25 20 L10 5 Z" fill="#4D4D4D"></path>
+    <circle cx="35" cy="35" r="12" fill="none" stroke="#4D4D4D" stroke-width="3"></circle>
+    <path d="M25 25 Q40 20 45 35 Q40 50 25 45 Q20 40 25 25 Z" fill="#4D4D4D"></path>
+  </g>
+</svg>

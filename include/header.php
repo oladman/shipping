@@ -1,46 +1,113 @@
-<header id="header" class="header-scroll top-header headrom">
-        <nav class="navbar navbar-dark">
-        <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/logo.png" alt="" > </a>
-            <div class="header-style">
-                <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNavbarCollapse">&#9776;</button>
-              
-                <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
-                        <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Explore <span class="sr-only"></span></a> </li>
+  <header>
+    <div class="top-bar-PC">
+      <div class="top-left">
+        <div><i class="fas fa-phone"></i> <strong>+025 757 576 560</strong></div>
+        <div class="divider"></div>
+        <div><i class="fas fa-clock"></i> Monday to Friday: <strong>9:00am – 6:00pm</strong></div>
+      </div>
+
+      <div class="top-right">
+        <div><i class="fas fa-briefcase"></i> Career</div>
+        <div class="divider"></div>
+        <div><strong>Terms & Conditions</strong></div>
+        <div class="socials">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
+          <a href="#"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+    </div>
+    <nav class="main-nav">
+            <div class="logo-cover">
+          <a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="300" height="120" viewBox="0 0 500 120">
+            <!-- Orange Square with Plane Icon -->
+            <g transform="translate(10,20)">
+              <!-- Square -->
+              <rect x="0" y="0" width="80" height="70" rx="10"
+                fill="none" stroke="#FF7A00" stroke-width="2" />
+
+              <!-- Plane Icon -->
+              <path d="M20 50 L40 40 L20 10 L30 10 L50 35 L70 25 L75 30 L50 45 L30 60 L20 60 Z"
+                fill="#000" />
+            </g>
+
+            <!-- Text -->
+            <text x="120" y="70"
+              font-family="Montserrat, Arial, sans-serif"
+              font-size="46"
+              font-weight="550"
+              fill="#333">
+              Marinex
+            </text>
+          </svg> </a>
+        </div>
+
+    
+        <ul class="nav-item-cover">
+          <li class="nav-item"> <a class="" href="index.php">About </a> </li>
+          <li class="nav-item"> <a href="index.php">Ship</a> </li>
+          <li class="nav-item"> <a href="index.php">Bussiness </a> </li>
+          <li class="nav-item"> <a href="index.php">Career </a> </li>
+          <li class="nav-item"> <a href="index.php">Contact </a> </li>
+          <li class="nav-item option-contact"> <a href="index.php">TRACK PARCEL </a> </li>
 
 
-
-                        <?php
-                        if (empty($_SESSION["user_id"])) // if user is not login
-                        {
-                            echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>
-							  <li class="nav-item"><a href="registration.php" class="nav-link active">Register</a> </li>';
-                        } else {
-
-                            echo '<li class="nav-item"><a href="your_orders.php" class="nav-link active">My Orders</a> </li>';
-                            echo '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
-                        }
-
-                        ?>
-
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-
-        <nav class="nav-sec">
-            <ul>
-                <li><a href="/"> Track </a> </li>
-                <li><a href="/"> Ship </a> </li>
-                <li> <a href="/"> Customer Service </a> </li>
-            </ul>
-
-            <a href="login.php"> Customer Portal Logins </a>
+        </ul>
 
 
+      <div class="far-left">
+        <i class="fa-solid fa-user"></i>
+        <i class="fa-solid fa-globe"></i>
+        <div>EN</div>
+      </div>
+    </nav>
 
-        </nav>
+    <nav class="mobile-nav">
 
-    </header>
+      <div class="mobile-nav-cover">
+        <div class="mobile-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="200" height="120" viewBox="0 0 500 120">
+            <!-- Orange Square with Plane Icon -->
+            <g transform="translate(10,20)">
+              <!-- Square -->
+              <rect x="0" y="0" width="80" height="70" rx="10"
+                fill="none" stroke="#FF7A00" stroke-width="2" />
+
+              <!-- Plane Icon -->
+              <path d="M20 50 L40 40 L20 10 L30 10 L50 35 L70 25 L75 30 L50 45 L30 60 L20 60 Z"
+                fill="#000" />
+            </g>
+
+            <!-- Text -->
+            <text x="120" y="70"
+              font-family="Montserrat, Arial, sans-serif"
+              font-size="46"
+              font-weight="550"
+              fill="#333">
+              Marinex
+            </text>
+          </svg>
+        </div>
+
+
+        <!-- Hamburger Button -->
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <!-- Collapsible Menu -->
+        <ul class="mobile-menu" id="mobileNavMenu">
+          <li><a href="index.php"><i class="fa-solid fa-circle-info"></i> About</a></li>
+          <li><a href="index.php"><i class="fa-solid fa-location-crosshairs"></i> Track</a></li>
+          <li><a href="index.php"><i class="fa-solid fa-box"></i> Ship</a></li>
+          <li><a href="index.php"><i class="fa-solid fa-briefcase"></i> Career</a></li>
+          <li><a href="index.php"><i class="fa-solid fa-building"></i> Business</a></li>
+          <li><a href="index.php"><i class="fa-solid fa-phone"></i> Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+
+
+  </header>
