@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" width="200" height="60">
-  <!-- Cargill text -->
-  <text x="0" y="40" font-family="Arial, sans-serif" font-size="38" font-weight="bold" fill="#4D4D4D">Cargill</text>
-
-  <!-- Leaf shape above "a" and "r" -->
-  <path d="M55 10 
-           Q70 -5, 100 20 
-           Q80 5, 55 10 Z" fill="#4D4D4D"></path>
-</svg>
