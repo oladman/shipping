@@ -89,9 +89,6 @@ if(isset($_POST['submit'] ))
     <link rel="icon" href="#">
     <title>Register & Ship | Oceanlogistix - Best Shippping for all global services</title>
     <meta name="description" content="Pakcages shipping, envelope shipping, track, ship, global shipping, best shipping company">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/animsition.min.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 	<link href="css/newstyle.css" rel="stylesheet">

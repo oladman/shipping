@@ -45,6 +45,13 @@ session_start();
 
 
  <section class="hero">
+        <div class="hero-slideshow">
+            <div class="hero-slide active" style="background-image: url('images/img/ship-facility-3.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('images/img/ship-facility-2.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('images/img/ship-facility-1.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('images/img/ship-facility-4.jpg');"></div>
+            <div class="hero-slide" style="background-image: url('images/img/ship-facility-5.jpg');"></div>
+        </div>
         <div class="hero-content">
             <h1>Accelerating Logistics <br /> with Precision.</h1>
 
@@ -702,6 +709,26 @@ session_start();
 
   </section>
   <?php include "include/footer.php" ?>
+   <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.hero-slide');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                slides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    if (i === index) {
+                        slide.classList.add('active');
+                    }
+                });
+            }
+
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }, 60000); // 60000ms = 1 minute
+        });
+    </script>
    </body>
 
 </html>
