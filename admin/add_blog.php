@@ -67,8 +67,7 @@ if(isset($_POST['submit']))
 												$sql = "INSERT INTO ship_blog (rs_id,title, blog, img) VALUE  ('', '".$_POST['title']."','".$_POST['blog']."','".$fnew."') ";
                                                 
                                                 // store the submited data ino the database :images												mysqli_query($db, $sql); 
-													mysqli_query($db, $sql); 
-												move_uploaded_file($temp, $store);
+													mysqli_query($conn, $sql);												move_uploaded_file($temp, $store);
 			  
 													$success = 	'<div class="alert alert-success alert-dismissible fade show">
 																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

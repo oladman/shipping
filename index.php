@@ -27,11 +27,8 @@ session_start();
   <link rel="icon" href="#">
   <title>Marinex | Best Shippping for all global services | Track & Ship</title>
   <meta name="description" content="Pakcages shipping, envelope shipping, track, ship, global shipping, best shipping company">
-  <link href="css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/animsition.min.css" rel="stylesheet">
-  <link href="css/animate.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
-  <script src="./js/script.js"></script>
+  <link href="css/blog.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -47,83 +44,44 @@ session_start();
 <body>
 
 
+ <section class="hero">
+        <div class="hero-content">
+            <h1>Accelerating Logistics <br /> with Precision.</h1>
 
+            <p>
+                Seamlessly transporting goods across cities, countries, <br /> and continents.
+            </p>
 
-  <div class="hero">
-    <div class="brief">
-      <div class="brief-inner">
-        <h1>Accelerating logistics <br /> through innovation, <br /> reliability, and precision.</h1>
-        <p>We provide a flexible, helpful, and genuine 24/7 service. feel free to check out the full range of services we offer and if there is something we have not mentioned then just ask as we are pretty certain we can help. </p>
-      </div>
-      <div class="Track-pc">
-        <div class="hero-inner">
-          <div class="hero-text">
-            <p>Tracking Order</p>
-            <div class="track-cover">
-              <form method="post" action="tracking.php">
-                <div class="the-input-cover"><i class="fa-solid fa-location-dot"></i><input class="track-input-pc" type="text" name="search" placeholder="Tracking number(s)" required></div>
-                <div class="overal-submit-track-pc-cover">
-                  <div class="cover-submit-track-pc"><input class="submit-track-pc" type="submit" value="Track Your Package"> <i class="fa-solid fa-arrow-right"></i></div>
-                  <div class="under-submit-track">
-                    <p>Multiple Tracking Numbers</p>
-                    <p> <i class="fa-regular fa-circle-question"></i> Need Help</p>
-                  </div>
+            <form class="search-card" action="tracking.php" method="post">
+                <p class="field-name">Track Your Parcel</p>
+                <div class="field">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <input type="text" name="search" placeholder="Tracking number(s)" required />
                 </div>
-              </form>
-              <?php
-              // (B) PROCESS SEARCH WHEN FORM SUBMITTED
-              if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["search"])) {
-                // (B1) SEARCH FOR TRACKING INFORMATION
-                require "track.php";
-              }
-              ?>
-            </div>
-          </div>
-          <div class="sample-tracking-code">
+                <button class="search-btn" type="submit" value="Track">Track Your Package <i class="fa-solid fa-arrow-right"></i></button>
+                    <div class="under-submit-track">
+                        <p>Multiple Tracking Numbers</p>
+                        <p> <i class="fa-regular fa-circle-question"></i> Need Help</p>
+                    </div>
+                    <div class="sample-tracking-code">
             <p>Sample Tracking Code: <span>2VH488487365431</span></p>
           </div>
+                <?php
+                // (B) PROCESS SEARCH WHEN FORM SUBMITTED
+                if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["search"])) {
+                    // (B1) SEARCH FOR TRACKING INFORMATION
+                    require "track.php";
+                }
+                ?>
+
+            </form>
+
+
+
         </div>
-      </div>
-    </div>
+    </section>
 
 
-  </div>
-
-  <div class="hero-mobile">
-    <div class="brief-mobile">
-      <h1>Accelerating logistics <br /> through reliability,<br /> and precision.</h1>
-      <p>Need to ship across the country or around the globe? We make it fast, simple, and secure. With real-time tracking and 24/7 support, you're always in control of your deliveries.</p>
-    </div>
-    <div class="hero-inner-mobile">
-      <div class="mobile-track-input">
-        <div class="mobile-track-up">
-          <p>
-            Tracking Order
-          </p>
-        </div>
-        <div class="mobile-track-down">
-          <form method="post" action="tracking.php">
-            <div class="cover-mobile-input-track"><i class="fa-solid fa-location-dot"></i><input class="mobile-input-track" type="text" name="search" placeholder="Tracking number(s)" required></div>
-            <input class="mobile-submit-button" type="submit" value="Track">
-
-          </form>
-          <div class="mobile-under-submit-track">
-            <p>Multiple Tracking Numbers</p>
-            <p> <i class="fa-regular fa-circle-question"></i> Need Help</p>
-          </div>
-
-          <?php
-          // (B) PROCESS SEARCH WHEN FORM SUBMITTED
-          if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["search"])) {
-            // (B1) SEARCH FOR TRACKING INFORMATION
-            require "track.php";
-          }
-          ?>
-        </div>
-      </div>
-
-    </div>
-  </div>
   <section id="wrapper">
     <div class="logos-partnership">
       <p>These logos represent our commitment to quality and reliability across industries.</p>
@@ -154,7 +112,7 @@ session_start();
         <p class="first-about-icon"><i class="fa-solid fa-building"></i> ABOUT US
         </p>
         <h1>Provide Logistics <br /> Support since 1996 </h1>
-        <p class="few-about-us">Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit aliquid enim distinctio delectus! Tempora numquam vitae optio, eius quibusdam ipsum.</p>
+        <p class="few-about-us">With a legacy of excellence since 1996, we provide comprehensive logistics solutions tailored to your needs. Our commitment to reliability and customer satisfaction sets us apart.</p>
         <p class="second-about-icon"><i class="fa-solid fa-compass"></i> Read More About Us
         </p>
       </div>
@@ -164,194 +122,235 @@ session_start();
 
     </div>
   </section>
-  <section id="wrapper">
-    <h1>EXPLORE OUR SERVICES</h1>
-    <div class="Services-box">
-      <div class="services-box-headline">
-        <h2>Logistics solutions for all shippers</h2>
-        <p>Learn about Marinex Express – we cater to a wide range of customer needs and provide a comprehensive solution for document and parcel shipping.
-
-        </p>
+  <section id="wrapper" class="services-section">
+     <h1>EXPLORE OUR SERVICES</h1>
+    <div class="content-services">
+      <!-- Image -->
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1766608422198-5be9ac0aac9e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Truck Logistics">
       </div>
-      <div class="services-img"> <img src="images/rreplace.jpg" /> </div>
-      <div class="box-services-cover">
-        <div class="box-services">
-          <div><i class="fa-solid fa-plane"></i>
-            <p>Domestic Shipping</p>
-          </div>
-          <hr class="hr-line-line" />
-          <div><i class="fa-solid fa-user-tie"></i>
-            <p>International Shipping</p>
-          </div>
-          <hr class="hr-line-line" />
-          <div><i class="fa-solid fa-building"></i>
-            <p>Express Delivery</p>
-          </div>
-          <hr class="hr-line-line" />
 
+      <!-- Services -->
+      <div class="services">
+        <div class="service-item">
+          <h3>Logistics solutions for all shippers <span>⌄</span></h3>
         </div>
 
-        <div class="box-services">
-          <div><i class="fa-solid fa-business-time"></i>
-            <p>Bulk Shipping</p>
+        <div class="service-item active">
+          <h3>ROAD FREIGHT <span>⌃</span></h3>
+          <div class="service-content">
+            <p>
+              Essentials trucking is a widely used mode of transport which
+              offers flexibility as well as efficiency in the deliveries of
+              goods. Learn about Marinex Express – we cater to a wide range of customer needs and provide a comprehensive solution for document and parcel shipping.
+            </p>
+            <a href="#" class="btn">EXPLORE ROAD FREIGHT</a>
+            <div class="zigzag"></div>
           </div>
-          <hr class="hr-line-line" />
-          <div><i class="fa-solid fa-building"></i>
-            <p>Tracking Services</p>
-          </div>
-          <hr class="hr-line-line" />
-          <div><i class="fa-solid fa-business-time"></i>
-            <p>Packaging Services</p>
-          </div>
-          <hr class="hr-line-line" />
-
-
         </div>
 
+       
       </div>
-      <button>Explore Logistics Express</button>
+
+      
+    </div>
+
+
+     <div class="content-services">
+      <!-- Image -->
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1605745341075-1b7460b99df8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Truck Logistics">
+      </div>
+
+      <!-- Services -->
+      <div class="services">
+        <div class="service-item">
+          <h3>Cargo Shipping - Business Only <span>⌄</span></h3>
+        </div>
+
+        <div class="service-item cargo">
+          <h3>CARGO FREIGHT  <span>⌃</span></h3>
+          <div class="service-content">
+            <p>
+             We facilitate the movement of goods between producers, suppliers, and consumers across different regions and countries.
+            </p>
+            <a href="#" class="btn">EXPLORE CARGO EXPRESS</a>
+            <div class="zigzag"></div>
+          </div>
+        </div>
+
+       
+      </div>
+    </div>
+
+
+        <div class="content-services">
+      <!-- Image -->
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1627915589334-14a3c3e3a741?q=80&w=1237&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Truck Logistics">
+      </div>
+
+      <!-- Services -->
+      <div class="services">
+        <div class="service-item">
+          <h3>Retailer or Volume Shipping - Bussiness Only <span>⌄</span></h3>
+        </div>
+
+        <div class="service-item retailer">
+          <h3>Retailer Shipping <span>⌃</span></h3>
+          <div class="service-content">
+            <p>
+              Essentials trucking is a widely used mode of transport which
+              offers flexibility as well as efficiency in the deliveries of
+              goods. Learn about Marinex Express – we cater to a wide range of customer needs and provide a comprehensive solution for document and parcel shipping.
+            </p>
+            <a href="#" class="btn">EXPLORE RETAILER SHIPPING</a>
+            <div class="zigzag"></div>
+          </div>
+        </div>
+
+       
+      </div>
+
+      
+    </div>
+
+    <div class="content-services">
+      <!-- Image -->
+      <div class="image-box">
+        <img src="https://images.unsplash.com/photo-1768796372362-05c256e61d8c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Truck Logistics">
+      </div>
+
+      <!-- Services -->
+      <div class="services">
+        <div class="service-item">
+          <h3>Enterprise Logistics Services - Bussiness Only <span>⌄</span></h3>
+        </div>
+
+        <div class="service-item enterprise">
+          <h3>Enterprise Shipping <span>⌃</span></h3>
+          <div class="service-content">
+            <p>
+              Depending on your expertise and resources, you can tailor your offerings to meet the specific needs of your clients and differentiate yourself in the market.
+            </p>
+            <a href="#" class="btn">EXPLORE ENTERPRISE SHIPPING</a>
+            <div class="zigzag"></div>
+          </div>
+        </div>
+
+       
+      </div>
+
+      
     </div>
   </section>
 
-  <section id="wrapper">
-    <div class="Services-box">
-      <div class="services-box-headline">
-        <h2>Cargo Shipping - Business Only</h2>
-        <p>We facilitate the movement of goods between producers, suppliers, and consumers across different regions and countries.
+  <section id="wrapper" class="cbx-section">
+  <div class="cbx-header">
+    <span class="cbx-badge">KEY BENEFITS</span>
+    <h2 class="cbx-title">Benefits of our services</h2>
+  </div>
 
+  <div  class="cbx-card-wrapper">
+
+    <div class="cbx-card">
+      <div class="cbx-bg-image" style="background-image:url('https://images.unsplash.com/photo-1517488948216-e473cee81e23?q=80&w=840&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+      <div class="cbx-bg-overlay"></div>
+      <div class="cbx-content">
+        <div class="cbx-icon"><img src="images/icons/safety.png" /></div>
+        <h3 class="cbx-card-title">Safety & top quality</h3>
+        <p class="cbx-card-text">
+          Advanced safety measures combined with consistent, top-tier service quality.
         </p>
       </div>
-      <div class="services-img"> <img src="images/cargo_new.jpg" /> </div>
-      <div class="box-services-cover">
-        <div class="box-services">
-          <div><i class="fa-solid fa-plane-departure"></i>
-            <p>Air Freight</p>
-          </div>
-          <hr class="hr-line-line" />
-          <div><i class="fa-solid fa-ship"></i>
-            <p>Ocean Freight</p>
-          </div>
-          <hr class="hr-line-line" />
-          <div><i class="fa-solid fa-truck-fast"></i>
-            <p>Road Freight</p>
-          </div>
-          <hr class="hr-line-line" />
-          <div><i class="fa-solid fa-train"></i>
-            <p>Rail Freight</p>
-          </div>
-          <hr class="hr-line-line" />
-
-
-
-        </div>
-
-        <div class="box-services">
-          <div><i class="fa-solid fa-truck-fast"></i>
-            <p>Customs Brokerage</p>
-          </div>
-          <hr class="hr-line-line" />
-          <div><i class="fa-solid fa-train"></i>
-            <p>Warehousing and Distribution</p>
-          </div>
-          <hr class="hr-line-line" />
-          <div><i class="fa-solid fa-truck-fast"></i>
-            <p>Cargo Insurance</p>
-          </div>
-          <hr class="hr-line-line" />
-          <div><i class="fa-solid fa-train"></i>
-            <p>Supply Chain Consulting</p>
-          </div>
-          <hr class="hr-line-line" />
-
-
-
-
-        </div>
-
-      </div>
-      <button>Explore Cargo Express</button>
     </div>
-  </section>
-  <section id="wrapper">
-    <div class="Services-box">
-      <div class="services-box-headline">
-        <h2>Retailer or Volume Shipping - Bussiness Only</h2>
-        <p>We have two divisions that offer reliable business shipping for e-commerce, supplier or manufacturing companies.
 
+    <div class="cbx-card">
+      <div class="cbx-bg-image" style="background-image:url('images/img/delivery.jpg');"></div>
+      <div class="cbx-bg-overlay"></div>
+      <div class="cbx-content">
+        <div class="cbx-icon"><img src="images/icons/delivery.png" /></div>
+        <h3 class="cbx-card-title">On time <br /> delivery</h3>
+        <p class="cbx-card-text">
+         Fast, reliable delivery that arrives exactly when promised.
         </p>
       </div>
-      <div class="services-img"> <img src="images/retailer_new.jpg" /> </div>
-      <div class="box-services-cover">
-        <div class="box-services">
-          <div><i class="fa-solid fa-truck-fast"></i>
-            <p>Inventory Management Solutions: Offer software or consultancy services to help retailers optimize their inventory levels, streamline ordering processes, and minimize stockouts or overstock situations.</p>
-          </div>
-          <hr class="hr-line-line" />
-
-        </div>
-
-        <div class="box-services">
-          <div><i class="fa-solid fa-plane-departure"></i></i>
-            <p>Supply Chain Consulting: Provide advice and solutions to optimize supply chain operations, including sourcing strategies, transportation logistics, and warehouse management.</p>
-          </div>
-          <hr class="hr-line-line" />
-
-        </div>
-
-      </div>
-      <button>Explore Retailer Express</button>
     </div>
-  </section>
-  <section id="wrapper">
-    <div class="Services-box">
-      <div class="services-box-headline">
-        <h2>Enterprise Logistics Services - Bussiness Only</h2>
-        <p>Depending on your expertise and resources, you can tailor your offerings to meet the specific needs of your clients and differentiate yourself in the market.
 
+    <div class="cbx-card">
+      <div class="cbx-bg-image" style="background-image:url('images/img/insurance.jpg');"></div>
+      <div class="cbx-bg-overlay"></div>
+      <div class="cbx-content">
+        <div class="cbx-icon"><img src="images/icons/dollar.png" /></div>
+        <h3 class="cbx-card-title">Insurance coverage</h3>
+        <p class="cbx-card-text">
+          Comprehensive insurance protection for complete peace of mind.
         </p>
       </div>
-      <div class="services-img"> <img src="images/bulk.jpg" /> </div>
-      <div class="box-services-cover">
-        <div class="box-services">
-          <div><i class="fa-solid fa-warehouse"></i>
-            <p>Warehouse Management</p>
-          </div>
-          <hr class="hr-line-line" />
-          <div> <i class="fa-solid fa-boxes-packing"></i>
-            <p> Freight Forwarding</p>
-          </div>
-          <hr class="hr-line-line" />
-          <div> <i class="fa-solid fa-house-flag"></i>
-            <p>Real Estate</p>
-          </div>
-          <hr class="hr-line-line" />
-
-        </div>
-
-        <div class="box-services">
-          <div><i class="fa-solid fa-truck-plane"></i>
-            <p>Last-Mile Delivery Solutions</p>
-          </div>
-          <hr class="hr-line-line" />
-          <div><i class="fa-brands fa-servicestack"></i>
-            <p>Technology Solutions</p>
-          </div>
-          <hr class="hr-line-line" />
-          <div><i class="fa-solid fa-square-plus"></i>
-            <p> And more!</p>
-          </div>
-          <hr class="hr-line-line" />
-
-        </div>
-
-      </div>
-      <button>Explore Enterprise Express</button>
     </div>
-  </section>
+
+    <div class="cbx-card">
+      <div class="cbx-bg-image" style="background-image:url('images/img/support.jpg');"></div>
+      <div class="cbx-bg-overlay"></div>
+      <div class="cbx-content">
+        <div class="cbx-icon"><img src="images/icons/customer-support.png" /></div>
+        <h3 class="cbx-card-title">24/7 customer support</h3>
+        <p class="cbx-card-text">
+          Reliable customer support available day and night.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section id="wrapper" class="lgx-service">
+  <div class="lgx-container">
+
+    <!-- Left Content -->
+    <div class="lgx-content">
+      <span class="cbx-badge">SERVICE OVERVIEW</span>
+
+      <h1 class="lgx-title">
+        Delivering your goods efficiently, no matter the distance
+      </h1>
+
+      <p class="lgx-text">
+        From local deliveries to long-distance shipments, we ensure your
+        goods reach their destination safely and on time.
+      </p>
+
+      <p class="lgx-text">
+        Our reliable last mile delivery solutions combine speed, precision,
+        and care, so you can focus on your business while we handle the logistics.
+      </p>
+
+      <a href="#" class="lgx-button">
+        Ship now
+        <span class="lgx-arrow">↗</span>
+      </a>
+    </div>
+
+    <!-- Right Images -->
+    <div class="lgx-images">
+      <div class="lgx-image-main">
+        <img src="https://images.unsplash.com/photo-1638045420324-e431122074c2?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Delivery worker" />
+      </div>
+
+      <div class="lgx-image-stack">
+        <div class="lgx-image-small">
+          <img src="https://images.unsplash.com/photo-1694715669993-ea0022b470f7?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Box delivery" />
+        </div>
+        <div class="lgx-image-small">
+          <img src="https://images.unsplash.com/photo-1753535865713-02e0d579b7ec?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Warehouse workers" />
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
   <section id="wrapper">
     <div class="track-container">
-      <p class="how-it-works">HOW IT WORKS</p>
-      <h2 class="track-title">How We Deliver <br />Your Parcel</h2>
+      <p class="cbx-badge">HOW IT WORKS</p>
       <div class="track-flow">
         <div class="track-step">
           <div class="track-icon-box">
@@ -399,21 +398,21 @@ session_start();
   <section id="wrapper">
     <div class="newway-chose-us">
       <div class="newway-chose-us-left">
-        <h1>UNMATCHED EXCELENCE <br class="off-br" /> REASONS TO CHOOSE US</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis iste possimus similique ipsum modi? Repellendus voluptate consequatur minus ratione temporibus.</p>
+        <h1>REASONS TO CHOOSE US</h1>
+        <p>Our dedication to providing the best service is what makes us a leader in the logistics industry. We are proud to offer a range of benefits that ensure your shipments are handled with the utmost care and professionalism.</p>
 
         <div class="newway-service">
           <div class="inner-newway-service">
             <div class="newway-icon"><i class="fa-solid fa-user-group"></i></div>
-            <p><span>Top Team:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. In, aliquid.</p>
+            <p><span>Top Team:</span> Our experienced professionals are the backbone of our service, ensuring your shipments are handled with expertise and care.</p>
           </div>
           <div class="inner-newway-service">
             <div class="newway-icon"><i class="fa-solid fa-headset"></i></div>
-            <p><span>Customer Support:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. In, aliquid.</p>
+            <p><span>Customer Support:</span> We offer 24/7 customer support to assist you with any questions or concerns you may have at any stage of the shipping process.</p>
           </div>
           <div class="inner-newway-service">
             <div class="newway-icon"><i class="fa-solid fa-sack-xmark "></i></div>
-            <p><span>Competitives Rate:</span> Lorem ipsum dolor sit amet consectetur adipisicing elit. In, aliquid.</p>
+            <p><span>Competitives Rate:</span> We provide cost-effective shipping solutions without compromising on quality or reliability, offering you the best value for your money.</p>
           </div>
         </div>
 
@@ -437,7 +436,7 @@ session_start();
           <h1>$5b+</h1>
           <hr class="linetwo-style" />
           <p>Equity value</p>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni, et?</p>
+          <p>Our strong financial foundation and significant equity value demonstrate our stability and long-term commitment to the logistics industry.</p>
           <p>
         </div>
 
@@ -445,136 +444,165 @@ session_start();
           <h1>932</h1>
           <hr class="linetwo-style" />
           <p>Ventures</p>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum minus vitae veniam animi, excepturi itaque.</p>
+          <p>We have successfully launched and supported numerous ventures, expanding our reach and capabilities across the globe.</p>
           <p>
         </div>
         <div class="equity">
           <h1>81%</h1>
           <hr class="linetwo-style" />
           <p>Succesful Pilots</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Labore consequatur blanditiis hic doloribus eligendi eveniet odit consectetur repudiandae asperiores voluptatum?</p>
+          <p>Our high rate of successful pilot programs showcases our innovative approach and our ability to adapt to new challenges and technologies.</p>
           <p>
         </div>
         <div class="equity">
           <h1>85+</h1>
           <hr class="linetwo-style" />
           <p>Fortune 500 patners</p>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. In, quo!</p>
+          <p>We are trusted by over 85 Fortune 500 companies, a testament to our reliability and the high quality of our services.</p>
           <p>
         </div>
       </div>
 
     </div>
   </section>
-  <section id="wrapper">
-    <div class="testi-section">
-      <p class="how-it-works">TESTIMONIALS</p>
-      <h2 class="track-title">What Clients Say <br />About Us</h2>
-      <div class="testi-slider">
-        <div id="testiTrack" class="testi-track">
+<section class="ol-testimonial-section">
+  <div class="ol-testimonial-header">
+    <p class="ol-testimonial-tag">TESTIMONIALS</p>
+    <h2 class="ol-testimonial-title">
+      What Clients Say About Us
+    </h2>
+  </div>
 
-          <!-- 1 -->
-          <div class="testi-card">
-            <div class="testi-quote"><i class="fa-solid fa-quote-left"></i></div>
-            <p class="testi-text">
-              Allay is the go-to courier service for my business. They’re reliable, affordable,
-              and their customer service is top-notch.
-            </p>
-            <div class="testi-author">
-              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Lewis John">
-              <div><strong>Lewis John</strong><span>CEO, Lewis Holdings</span></div>
-            </div>
-          </div>
-
-          <!-- 2 -->
-          <div class="testi-card">
-            <div class="testi-quote"><i class="fa-solid fa-quote-left"></i></div>
-            <p class="testi-text">
-              I’ve used Allay for several personal shipments and I’m always impressed with their
-              service. Pricing is fair and tracking is very accurate.
-            </p>
-            <div class="testi-author">
-              <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Jane Doe">
-              <div><strong>Jane Doe</strong><span>Private Customer</span></div>
-            </div>
-          </div>
-          <div class="testi-card">
-            <div class="testi-quote"><i class="fa-solid fa-quote-left"></i></div>
-            <p class="testi-text">
-              Allay is the go-to courier service for my business. They’re reliable, affordable,
-              and their customer service is top-notch.
-            </p>
-            <div class="testi-author">
-              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Lewis John">
-              <div><strong>Lewis John</strong><span>CEO, Lewis Holdings</span></div>
-            </div>
-          </div>
-          <!-- 3 -->
-          <div class="testi-card">
-            <div class="testi-quote"><i class="fa-solid fa-quote-left"></i></div>
-            <p class="testi-text">
-              The team was incredibly flexible when I needed to change my shipment details.
-              They kept me updated every step of the way. Highly recommend!
-            </p>
-            <div class="testi-author">
-              <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="Carlos Mendez">
-              <div><strong>Carlos Mendez</strong><span>Mgr, Acme Corp</span></div>
-            </div>
-          </div>
-          <div class="testi-card">
-            <div class="testi-quote"><i class="fa-solid fa-quote-left"></i></div>
-            <p class="testi-text">
-              Allay is the go-to courier service for my business. They’re reliable, affordable,
-              and their customer service is top-notch.
-            </p>
-            <div class="testi-author">
-              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Lewis John">
-              <div><strong>Lewis John</strong><span>CEO, Lewis Holdings</span></div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <!-- navigation dots will be filled by JS -->
-      <div id="testiDots" class="testi-dots"></div>
-    </div>
-  </section>
-
-  <section id="wrapper" class="blog-section">
-    <div class="company-articles">
-      <h1>The latest articles and <br class="off-br" /> industry insights</h1> <a href="#">View All</a>
-    </div>
-
-
-    <div class="news-box-cover">
+  <div class="ol-testimonial-slider">
+    <div id="olTestiTrack" class="ol-testimonial-track">
       <?php
-      $query_res = mysqli_query($db, "select * from ship_blog order by d_id desc LIMIT 3");
-      while ($r = mysqli_fetch_array($query_res)) {
-        // Limit blog content to 200 characters with ellipsis (...)
-        $short_blog = mb_strimwidth($r['blog'], 0, 200, '...');
+      $sql = "SELECT name, role, message, image_url
+              FROM testimonials
+              WHERE is_active = 1
+              ORDER BY created_at DESC";
 
-        echo '<div class="news-inner-box">
-            <div class="">
-                <div class="img-base">
-                    <img src="admin/Res_img/' . $r['img'] . '" alt="Marinex blog post">
-                </div>
+      $result = $conn->query($sql);
 
-                <div class="blog-content">
-                    <h5><a href="blog.php?blog_id=' . $r['d_id'] . '">' . $r['title'] . '</a></h5>
-                    <div class="product-name">' . $short_blog . '</div>
-                </div>
+      if ($result) {
+        while ($row = $result->fetch_assoc()) {
+      ?>
+          <div class="ol-testimonial-card">
+            <div class="ol-testimonial-avatar">
+              <img src="<?php echo htmlspecialchars($row['image_url']); ?>" alt="<?php echo htmlspecialchars($row['name']); ?>">
             </div>
-          </div>';
+
+            <p class="ol-testimonial-text">
+              <?php echo htmlspecialchars($row['message']); ?>
+            </p>
+
+            <div class="ol-testimonial-footer">
+              <div>
+                <strong class="ol-testimonial-name"><?php echo htmlspecialchars($row['name']); ?></strong>
+                <span class="ol-testimonial-role"><?php echo htmlspecialchars($row['role']); ?></span>
+              </div>
+
+              <div class="ol-testimonial-stars">★★★★★</div>
+            </div>
+          </div>
+      <?php
+        }
       }
       ?>
+    </div>
+  </div>
+
+  <div id="olTestiDots" class="ol-testimonial-dots"></div>
+</section>
 
 
+
+  <section id="wrapper" class="blog-section">
+
+  <!-- Header -->
+  <div class="nu-container">
+    <div class="nu-header">
+      <div class="nu-header-text">
+        <h2 class="nu-title">
+          The latest articles and <br class="off-br"> industry insights
+        </h2>
+      </div>
+
+      <a href="#" class="nu-btn">View All</a>
     </div>
 
+    <!-- Cards -->
+    <div class="nu-card-grid"> 
 
+  <?php
+  // Fetch UUID as readable string
+ $query_res = mysqli_query($conn, "
+    SELECT
+        LOWER(CONCAT(
+            SUBSTR(HEX(id), 1, 8), '-',
+            SUBSTR(HEX(id), 9, 4), '-',
+            SUBSTR(HEX(id), 13, 4), '-',
+            SUBSTR(HEX(id), 17, 4), '-',
+            SUBSTR(HEX(id), 21)
+        )) AS id,
+        title,
+        blog,
+        img,
+        created_at
+    FROM ship_blog
+    ORDER BY created_at DESC
+    LIMIT 3
+");
 
-  </section>
+  while ($r = mysqli_fetch_array($query_res)) {
+
+      // Limit blog content
+      $short_blog = mb_strimwidth(strip_tags($r['blog']), 0, 200, '...');
+  ?>
+
+      <article class="nu-card">
+          <img
+              src="admin/blog_img/<?php echo htmlspecialchars($r['img']); ?>"
+              alt="<?php echo htmlspecialchars($r['title']); ?>"
+              class="nu-card-image"
+          >
+
+          <div class="nu-card-body">
+
+              <!-- Meta -->
+              <div class="nu-card-meta">
+                  <span class="nu-date">
+                      <?php echo date("d M Y", strtotime($r['created_at'])); ?>
+                  </span>
+                  <span class="nu-tag">News</span>
+              </div>
+
+              <!-- Title -->
+              <h3 class="nu-card-title">
+                  <a href="blog.php?blog_id=<?php echo $r['id']; ?>">
+                      <?php echo htmlspecialchars($r['title']); ?>
+                  </a>
+              </h3>
+
+              <!-- Content -->
+              <p class="nu-card-text">
+                  <?php echo $short_blog; ?>
+              </p>
+
+              <a href="blog.php?blog_id=<?php echo $r['id']; ?>" class="nu-link">
+                  Learn More →
+              </a>
+
+          </div>
+      </article>
+
+  <?php } ?>
+
+</div>
+
+  </div>
+
+</section>
+
 
 
   <section id="wrapper">
@@ -673,123 +701,8 @@ session_start();
     </div>
 
   </section>
-  <section id="wrapper">
-    <div class="faqs-style-pc">
-      <h2>Can’t find what you’re looking for?</h2>
-      <p>Go to our FAQs section to find answers to your tracking questions.</p>
-      <a href="/">FAQs</a>
-
-
-    </div>
-    <div class="faqs-style-mobile">
-      <div>
-        <h2>Can’t find what you’re looking for?</h2>
-        <p>You can find more answers to your tracking questions here.</p>
-      </div>
-      <a href="/">More FAQs</a>
-
-    </div>
-  </section>
   <?php include "include/footer.php" ?>
-  <script>
-    document.getElementById("mobileNavToggle").addEventListener("click", function() {
-      document.getElementById("mobileNavMenu").classList.toggle("open");
-    });
-  </script>
-  <script>
-    const logosBox = document.getElementById("logosBox");
-    let position = -logosBox.offsetWidth / 2;
-
-    function animateSlider() {
-      position += 0.5; // Move right by 1px
-      if (position >= 0) {
-        position = -logosBox.offsetWidth / 2; // Reset to start
-      }
-      logosBox.style.transform = `translateX(${position}px)`;
-      requestAnimationFrame(animateSlider);
-    }
-
-    // Duplicate logos for seamless scroll
-    logosBox.innerHTML += logosBox.innerHTML;
-
-    animateSlider();
-  </script>
-
-  <script>
-    /* ----------  basic variables  ------------------ */
-    const track = document.getElementById('testiTrack');
-    const cards = Array.from(document.querySelectorAll('.testi-card'));
-    const dotsBox = document.getElementById('testiDots');
-    let index = 0;
-    let autoID;
-
-    /* ----------  build dots and helpers  ----------- */
-    cards.forEach((_, i) => {
-      const dot = document.createElement('span');
-      dot.className = 'testi-dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => go(i));
-      dotsBox.appendChild(dot);
-    });
-
-    function activate() {
-      // slide track
-      const slideWidth = cards[0].offsetWidth + 20; // card width + gap
-      const padLeft = parseFloat(getComputedStyle(track).paddingLeft);
-      track.style.transform = `translateX(${padLeft - index*slideWidth}px)`;
-
-      // card & dot states
-      cards.forEach((c, i) => c.classList.toggle('active', i === index));
-      dotsBox.querySelectorAll('.testi-dot')
-        .forEach((d, i) => d.classList.toggle('active', i === index));
-    }
-
-    function next(n = 1) {
-      index = (index + n + cards.length) % cards.length;
-      activate();
-    }
-
-    function go(i) {
-      index = i;
-      activate();
-      resetAuto();
-    }
-
-    /* ----------  auto-slide every 5 s  -------------- */
-    function resetAuto() {
-      clearInterval(autoID);
-      autoID = setInterval(() => next(1), 5000);
-    }
-    resetAuto(); // start
-
-    /* ----------  swipe support  --------------------- */
-    let startX = null;
-    track.addEventListener('pointerdown', e => startX = e.clientX);
-    track.addEventListener('pointerup', e => {
-      if (startX === null) return;
-      const dx = e.clientX - startX;
-      if (Math.abs(dx) > 50) { // swipe threshold ≈50 px
-        next(dx < 0 ? 1 : -1);
-        resetAuto();
-      }
-      startX = null;
-    });
-    /* allow touch scrolling to be captured */
-    track.addEventListener('touchstart', e => startX = e.touches[0].clientX);
-    track.addEventListener('touchend', e => {
-      if (startX === null) return;
-      const dx = e.changedTouches[0].clientX - startX;
-      if (Math.abs(dx) > 50) {
-        next(dx < 0 ? 1 : -1);
-        resetAuto();
-      }
-      startX = null;
-    });
-
-    /* ----------  initial visual state  -------------- */
-    window.addEventListener('resize', activate);
-    activate();
-  </script>
-</body>
+   </body>
 
 </html>
 

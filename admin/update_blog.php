@@ -65,8 +65,8 @@ if(isset($_POST['submit']))
 												
 												$res_name=$_POST['title'];
 				                                 
-												$sql = "update ship_blog set title='$res_name',blog='$_POST[blog]',img='$fnew' where d_id='$_GET[blog_upd]' ";  // store the submited data ino the database :images												mysqli_query($db, $sql); 
-													mysqli_query($db, $sql); 
+												$sql = "update ship_blog set title='$res_name',blog='$_POST[blog]',img='$fnew' where d_id='$_GET[blog_upd]' ";  // store the submited data ino the database :images												mysqli_query($conn, $sql); 
+													mysqli_query($conn, $sql); 
 												move_uploaded_file($temp, $store);
 			  
 													$success = 	'<div class="alert alert-success alert-dismissible fade show">
@@ -273,7 +273,7 @@ if(isset($_POST['submit']))
                                             <form action='' method='post' enctype="multipart/form-data">
                                                 <div class="form-body">
                                                     <?php $qml = "select * from ship_blog where d_id='$_GET[blog_upd]'";
-                                                    $rest = mysqli_query($db, $qml);
+                                                    $rest = mysqli_query($conn, $qml);
                                                     $roww = mysqli_fetch_array($rest);
                                                     ?>
                                                     <hr>

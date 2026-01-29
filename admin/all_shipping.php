@@ -221,7 +221,7 @@ session_start();
 
                                                             <?php
 $sql = "SELECT * FROM shipping order by s_tracking desc";
-$query = mysqli_query($db, $sql);
+$query = mysqli_query($conn, $sql);
 
 if (!mysqli_num_rows($query) > 0) {
     echo '<td colspan="11"><center>No Menu</center></td>';

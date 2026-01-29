@@ -22,7 +22,7 @@ if (isset($_POST['submit'])) {
     } else {
 
         $sql = "INSERT INTO shipping (s_id, s_country,s_name,s_address,s_zip,s_city,s_state,s_phone,s_email,r_country,r_name,r_address,r_zip,r_city,r_state,r_phone,r_email,s_trans,s_type,s_description,s_weight,s_value,s_insurance,s_quantity,s_freight,s_subtotal,s_estimate,s_date,s_tracking) VALUES ('', '" . $_POST['s_country'] . "', '" . $_POST['s_name'] . "', '" . $_POST['s_address'] . "', '" . $_POST['s_zip'] . "', '" . $_POST['s_city'] . "', '" . $_POST['s_state'] . "', '" . $_POST['s_phone'] . "', '" . $_POST['s_email'] . "','" . $_POST['r_country'] . "', '" . $_POST['r_name'] . "', '" . $_POST['r_address'] . "', '" . $_POST['r_zip'] . "', '" . $_POST['r_city'] . "', '" . $_POST['r_state'] . "', '" . $_POST['r_phone'] . "', '" . $_POST['r_email'] . "', '" . $_POST['s_trans'] . "', '" . $_POST['s_type'] . "', '" . $_POST['s_description'] . "', '" . $_POST['s_weight'] . "', '" . $_POST['s_value'] . "', '" . $_POST['s_insurance'] . "', '" . $_POST['s_quantity'] . "', '" . $_POST['s_freight'] . "', '" . $_POST['s_subtotal'] . "', '" . $_POST['s_estimate'] . "', '" . $_POST['s_date'] . "',  '" . $_POST['s_tracking'] . "' ) ";
-        mysqli_query($db, $sql);
+        mysqli_query($conn, $sql);
 
         $success = '<div class="alert alert-success alert-dismissible fade show">
                                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>

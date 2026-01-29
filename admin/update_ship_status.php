@@ -33,7 +33,7 @@
                     }else {
 
                         $sql = "update ship_status set ss_location='$_POST[ss_location]',ss_comment='$_POST[ss_comment]',ss_status='$_POST[ss_status]',ss_date='$_POST[ss_date]',ss_time='$_POST[ss_time]' where ss_id='$_GET[shipping_upd]'" ;  
-                        mysqli_query($db, $sql);
+                        mysqli_query($conn, $sql);
                         
 
                         $success =     '<div class="alert alert-success alert-dismissible fade show">
@@ -180,7 +180,7 @@
                                             <form action='' method='post' enctype="application/x-www-form-urlencoded">
                                                 <div class="form-body">
                                                 <?php $qml = "select * from ship_status where ss_id='$_GET[shipping_upd]'";
-                                                    $rest = mysqli_query($db, $qml);
+                                                    $rest = mysqli_query($conn, $qml);
                                                     $roww = mysqli_fetch_array($rest);
                                                     ?>
                                     

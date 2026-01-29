@@ -1,0 +1,264 @@
+/* HEADER */
+.nu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.nu-header-text {
+  max-width: 600px;
+}
+
+.nu-title {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.nu-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-top: 6px;
+}
+
+.nu-btn {
+  background: #0b4db8;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: all 0.3s ease; /* Added for smooth transitions */
+}
+
+.nu-btn:hover {
+  transform: translateY(-3px); /* Subtle lift effect */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+  background: #083c93; /* Slightly darker background on hover */
+}
+
+/* GRID */
+.nu-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* CARD */
+.nu-card {
+  border: 1px solid #eee;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.nu-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.nu-card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background-color: #f2f7f6;
+}
+
+.nu-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.nu-date {
+  color: #777;
+}
+
+.nu-tag {
+  background: #0b4db8;
+  color: #fff;
+  padding: 4px 10px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.nu-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.nu-card-title a {
+  text-decoration: none;
+  color: #111;
+}
+.nu-card-text {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.nu-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0b4db8;
+  text-decoration: none;
+  margin-top: auto;
+}
+
+.nu-link:hover {
+  text-decoration: underline;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+  margin-top: 40px;
+}
+
+/* Blog post styling */
+.blog-post {
+  flex: 3;
+  
+}
+
+.blog-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 0.25rem;
+  color: #102f57;
+  line-height: 1.1;
+}
+
+.blog-meta {
+  font-size: 0.8rem;
+  color: #555;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.blog-meta span {
+  text-transform: uppercase;
+  margin-right: 0.6rem;
+}
+
+.blog-content p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #333;
+}
+
+.blog-content a {
+  color: #0077cc;
+  text-decoration: none;
+}
+
+.blog-content a:hover {
+  text-decoration: underline;
+}
+
+.blog-image-style {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+}
+
+.blog-date {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+/* Sidebar */
+.sidebar {
+  flex: 1;
+  border-left: 1px solid #ddd;
+  padding-left: 1.5rem;
+}
+
+.sidebar h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #444;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.recent-posts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recent-posts li {
+  margin-bottom: 1rem;
+}
+
+.recent-posts a {
+  text-decoration: none;
+  color: #0077cc;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.recent-posts a:hover {
+  color: #222;
+  text-decoration: underline;
+}
+
+@media (max-width: 992px) {
+  .nu-card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    margin-top: 50px;
+  }
+
+  .sidebar {
+    border-left: none;
+    padding-left: 0;
+    margin-top: 2rem;
+  }
+}
+@media (max-width: 600px) {
+  .nu-title {
+    font-size: 20px;
+  }
+.blog-title {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-top: 0;
+ 
+}
+  .nu-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .nu-card-image {
+    height: 180px;
+  }
+}
+@media (max-width: 600px) {
+   .blog-title {
+  font-size: 1.2rem;
+  line-height: 1.1;
+} 
+}

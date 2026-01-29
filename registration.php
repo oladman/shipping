@@ -94,6 +94,7 @@ if(isset($_POST['submit'] ))
     <link href="css/animsition.min.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
+	<link href="css/newstyle.css" rel="stylesheet">
     <link rel="shortcut icon" type="image/jpg" href="/shipping/images/favicon.png"/>
     <script src="https://kit.fontawesome.com/41097bf629.js" crossorigin="anonymous"></script>
 </head>

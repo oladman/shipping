@@ -1,158 +1,95 @@
-<!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * Github Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->
-                        <!DOCTYPE html>
-<html lang="en">
 <?php
 include("connection/connect.php"); 
-error_reporting(0);
 session_start();
+include "include/header.php";
 
-include_once 'product-action.php'; 
+// Sanitize input from URL
+$blog_id = isset($_GET['blog_id']) ? $_GET['blog_id'] : '';
 
+if (empty($blog_id)) {
+    // Redirect or show 404
+    header("Location: index.php");
+    exit;
+}
+
+// Fetch 5 latest posts (exclude current blog)
+$recentQuery = "
+    SELECT BIN_TO_UUID(id) AS id, title 
+    FROM ship_blog 
+    WHERE BIN_TO_UUID(id) != ?
+    ORDER BY created_at DESC 
+    LIMIT 5
+";
+
+$recentStmt = $conn->prepare($recentQuery);
+$recentStmt->bind_param("s", $blog_id);
+$recentStmt->execute();
+$recentResult = $recentStmt->get_result();
+
+// Fetch the blog post by UUID
+$query = "SELECT BIN_TO_UUID(id) AS id, title, blog, img, created_at 
+          FROM ship_blog 
+          WHERE BIN_TO_UUID(id) = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("s", $blog_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$rows = $result->fetch_assoc();
+
+if (!$rows) {
+    // Blog not found
+    echo "<h2>Blog post not found!</h2>";
+    exit;
+}
 ?>
-<!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * Github Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->
-
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="#">
-    <title>Oceanlogistix | Best Shippping for all global services | Track & Ship</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/animsition.min.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><?php echo htmlspecialchars($rows['title']); ?> | Marinex</title>
     <link href="css/style.css" rel="stylesheet">
-    <link rel="shortcut icon" type="image/jpg" href="/shipping/images/favicon.png"/>
-    <script src="https://kit.fontawesome.com/41097bf629.js" crossorigin="anonymous"></script>
+    <link href="css/newstyle.css" rel="stylesheet">
+    <link href="css/blog.css" rel="stylesheet">
+      <script src="https://kit.fontawesome.com/41097bf629.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-    <!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * Github Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->
+<main class="container">
+    <article class="blog-post">
+      <h1 class="blog-title"><?php echo htmlspecialchars($rows['title']); ?></h1>
 
-    <header id="header" class="header-scroll top-header headrom">
-        <nav class="navbar navbar-dark">
-            <div class="container">
-                <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#mainNavbarCollapse">&#9776;</button>
-                <a class="navbar-brand" href="index.php"> <img class="img-rounded" src="images/logo.png" alt="" width="18%"> </a>
-                <div class="collapse navbar-toggleable-md  float-lg-right" id="mainNavbarCollapse">
-                    <ul class="nav navbar-nav">
-                        <li class="nav-item"> <a class="nav-link active" href="index.php">Home <span class="sr-only">(current)</span></a> </li>
-                      
-                        <?php
-						if(empty($_SESSION["user_id"]))
-							{
-								echo '<li class="nav-item"><a href="login.php" class="nav-link active">Login</a> </li>
-							  <li class="nav-item"><a href="registration.php" class="nav-link active">Register</a> </li>';
-							}
-						else
-							{
-									
-									echo  '<li class="nav-item"><a href="logout.php" class="nav-link active">Logout</a> </li>';
-							}
-
-						?>
-                        <!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * Github Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="page-wrapper">
+      <div class="blog-meta">
        
-        <?php $ress= mysqli_query($db,"select * from ship_blog where d_id='$_GET[blog_id]'");
-									     $rows=mysqli_fetch_array($ress);
-										  
-										  ?>
-        <section >
-                <div class="container">
-                 
-                       
-                        <!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * Github Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->
+        <span class="date">Posted on: <?php echo date("d M Y", strtotime($rows['created_at'])); ?></span>
+      </div>
 
-                      
-                            <div class="blog-style">
-                                <h1><?php echo $rows['title']; ?></h1>
-                               
-                                <?php echo '<img class="blog-image-style" src="admin/Res_img/'.$rows['img'].'" alt="Blog logo" >'; ?>
-                          
-                                <div class="blog-post-text"><?php echo $rows['blog']; ?></div>
-                            </div>
-                    
+      <img
+        src="admin/blog_img/<?php echo htmlspecialchars($rows['img']); ?>"
+        alt="<?php echo htmlspecialchars($rows['title']); ?>"
+        class="blog-image-style"
+      />
 
+      <section class="blog-content">
+        <?php echo $rows['blog']; ?>
+      </section>
+    </article>
 
-                    
-                </div>
-            
-        </section>
-       
-        
+    <aside class="sidebar">
+  <h3>Recent Posts</h3>
 
+  <ul class="recent-posts">
+    <?php while ($post = $recentResult->fetch_assoc()) { ?>
+      <li>
+        <a href="blog.php?blog_id=<?php echo htmlspecialchars($post['id']); ?>">
+          <?php echo htmlspecialchars($post['title']); ?>
+        </a>
+      </li>
+    <?php } ?>
+  </ul>
+</aside>
 
-        <!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * Github Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->
+  </main>
 
-
-        <?php include "include/footer.php" ?>
-
-    </div>
-
-    </div>
-    <!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * Github Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->
-
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/tether.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/animsition.min.js"></script>
-    <script src="js/bootstrap-slider.min.js"></script>
-    <script src="js/jquery.isotope.min.js"></script>
-    <script src="js/headroom.js"></script>
-    <script src="js/foodpicky.min.js"></script>
+  <?php include "include/footer.php" ?>
 </body>
-
 </html>

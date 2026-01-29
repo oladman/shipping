@@ -32,7 +32,7 @@
                     }else {
 
                         $sql = "update shipping set s_country='$_POST[s_country]',s_name='$_POST[s_name]',s_address='$_POST[s_address]',s_zip='$_POST[s_zip]',s_city='$_POST[s_city]',s_state='$_POST[s_state]',s_phone='$_POST[s_phone]',s_email='$_POST[s_email]',r_country='$_POST[r_country]',r_name='$_POST[r_name]',r_address='$_POST[r_address]',r_zip='$_POST[r_zip]',r_city='$_POST[r_city]',r_state='$_POST[r_state]',r_phone='$_POST[r_phone]',r_email='$_POST[r_email]',s_trans='$_POST[s_trans]',s_type='$_POST[s_type]',s_ptype='$_POST[s_ptype]',s_description='$_POST[s_description]',s_weight='$_POST[s_weight]',s_value='$_POST[s_value]',s_insurance='$_POST[s_insurance]',s_quantity='$_POST[s_quantity]',s_freight='$_POST[s_freight]',s_subtotal='$_POST[s_subtotal]',s_date='$_POST[s_date]', s_estimate='$_POST[s_estimate]' where s_tracking='$_GET[shipping_upd]'" ;  
-                        mysqli_query($db, $sql);
+                        mysqli_query($conn, $sql);
                 
 
                         $success =     '<div class="alert alert-success alert-dismissible fade show">
@@ -205,7 +205,7 @@
                                             <form action='' method='post' enctype="multipart/form-data">
                                                 <div class="form-body">
                                                     <?php $qml = "select * from shipping where s_tracking='$_GET[shipping_upd]'";
-                                                    $rest = mysqli_query($db, $qml);
+                                                    $rest = mysqli_query($conn, $qml);
                                                     $roww = mysqli_fetch_array($rest);
                                                     ?>
                                                     <hr>
