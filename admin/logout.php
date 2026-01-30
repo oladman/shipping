@@ -6,7 +6,6 @@
  * Visit My Website : https://oladimejiseunayo.netlify.app
  */ -->
                 <?php
-session_start();
 session_destroy();
 $url = 'index.php';
 header('Location: ' . $url);

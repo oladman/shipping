@@ -103,7 +103,6 @@ session_start();
           <img src="./images/expeditors_logo.svg" />
           <img src="./images/newups_logo.svg" />
           <img src="./images/cev_logo.svg" />
-          <!-- Duplicate for seamless effect -->
           <img src="./images/dhl_logo.png" />
           <img src="./images/fedex_logo.svg" />
           <img src="./images/cmacgm_logo.svg" />
@@ -132,12 +131,10 @@ session_start();
   <section id="wrapper" class="services-section">
      <h1>EXPLORE OUR SERVICES</h1>
     <div class="content-services">
-      <!-- Image -->
       <div class="image-box">
-        <img src="https://images.unsplash.com/photo-1766608422198-5be9ac0aac9e?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Truck Logistics">
+        <img src="images/img/road-freight.png" alt="Truck Logistics">
       </div>
 
-      <!-- Services -->
       <div class="services">
         <div class="service-item">
           <h3>Logistics solutions for all shippers <span>⌄</span></h3>
@@ -164,12 +161,10 @@ session_start();
 
 
      <div class="content-services">
-      <!-- Image -->
       <div class="image-box">
-        <img src="https://images.unsplash.com/photo-1605745341075-1b7460b99df8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Truck Logistics">
+        <img src="images/img/cargo-freight.png" alt="Truck Logistics">
       </div>
 
-      <!-- Services -->
       <div class="services">
         <div class="service-item">
           <h3>Cargo Shipping - Business Only <span>⌄</span></h3>
@@ -192,12 +187,10 @@ session_start();
 
 
         <div class="content-services">
-      <!-- Image -->
       <div class="image-box">
-        <img src="https://images.unsplash.com/photo-1627915589334-14a3c3e3a741?q=80&w=1237&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Truck Logistics">
+        <img src="images/img/retailer-shipping.png" alt="Truck Logistics">
       </div>
 
-      <!-- Services -->
       <div class="services">
         <div class="service-item">
           <h3>Retailer or Volume Shipping - Bussiness Only <span>⌄</span></h3>
@@ -218,17 +211,13 @@ session_start();
 
        
       </div>
-
-      
     </div>
 
     <div class="content-services">
-      <!-- Image -->
       <div class="image-box">
-        <img src="https://images.unsplash.com/photo-1768796372362-05c256e61d8c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Truck Logistics">
+        <img src="images/img/enterprise-shipping.png" alt="Truck Logistics">
       </div>
 
-      <!-- Services -->
       <div class="services">
         <div class="service-item">
           <h3>Enterprise Logistics Services - Bussiness Only <span>⌄</span></h3>
@@ -261,7 +250,7 @@ session_start();
   <div  class="cbx-card-wrapper">
 
     <div class="cbx-card">
-      <div class="cbx-bg-image" style="background-image:url('https://images.unsplash.com/photo-1517488948216-e473cee81e23?q=80&w=840&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');"></div>
+      <div class="cbx-bg-image" style="background-image:url('images/img/safety.jpg');"></div>
       <div class="cbx-bg-overlay"></div>
       <div class="cbx-content">
         <div class="cbx-icon"><img src="images/icons/safety.png" /></div>
@@ -333,22 +322,20 @@ session_start();
 
       <a href="#" class="lgx-button">
         Ship now
-        <span class="lgx-arrow">↗</span>
+        <img src="images/icons/arrow-link.png" class="lgx-arrow" alt="arrow up right" />
       </a>
     </div>
-
-    <!-- Right Images -->
     <div class="lgx-images">
       <div class="lgx-image-main">
-        <img src="https://images.unsplash.com/photo-1638045420324-e431122074c2?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Delivery worker" />
+        <img src="images/img/services-1.png" alt="Delivery worker" />
       </div>
 
       <div class="lgx-image-stack">
         <div class="lgx-image-small">
-          <img src="https://images.unsplash.com/photo-1694715669993-ea0022b470f7?q=80&w=1176&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Box delivery" />
+          <img src="images/img/services-2.png" alt="Box delivery" />
         </div>
         <div class="lgx-image-small">
-          <img src="https://images.unsplash.com/photo-1753535865713-02e0d579b7ec?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Warehouse workers" />
+          <img src="images/img/services-3.png" alt="Warehouse workers" />
         </div>
       </div>
     </div>
@@ -525,7 +512,6 @@ session_start();
 
   <section id="wrapper" class="blog-section">
 
-  <!-- Header -->
   <div class="nu-container">
     <div class="nu-header">
       <div class="nu-header-text">
@@ -537,11 +523,10 @@ session_start();
       <a href="#" class="nu-btn">View All</a>
     </div>
 
-    <!-- Cards -->
     <div class="nu-card-grid"> 
 
   <?php
-  // Fetch UUID as readable string
+
  $query_res = mysqli_query($conn, "
     SELECT
         LOWER(CONCAT(
@@ -562,20 +547,17 @@ session_start();
 
   while ($r = mysqli_fetch_array($query_res)) {
 
-      // Limit blog content
       $short_blog = mb_strimwidth(strip_tags($r['blog']), 0, 200, '...');
   ?>
 
       <article class="nu-card">
           <img
-              src="admin/blog_img/<?php echo htmlspecialchars($r['img']); ?>"
+              src="admin/assets/blog_img/<?php echo htmlspecialchars($r['img']); ?>"
               alt="<?php echo htmlspecialchars($r['title']); ?>"
               class="nu-card-image"
           >
 
           <div class="nu-card-body">
-
-              <!-- Meta -->
               <div class="nu-card-meta">
                   <span class="nu-date">
                       <?php echo date("d M Y", strtotime($r['created_at'])); ?>
@@ -583,14 +565,12 @@ session_start();
                   <span class="nu-tag">News</span>
               </div>
 
-              <!-- Title -->
               <h3 class="nu-card-title">
                   <a href="blog.php?blog_id=<?php echo $r['id']; ?>">
                       <?php echo htmlspecialchars($r['title']); ?>
                   </a>
               </h3>
 
-              <!-- Content -->
               <p class="nu-card-text">
                   <?php echo $short_blog; ?>
               </p>
@@ -726,7 +706,7 @@ session_start();
             setInterval(() => {
                 currentSlide = (currentSlide + 1) % slides.length;
                 showSlide(currentSlide);
-            }, 60000); // 60000ms = 1 minute
+            }, 5000); // 
         });
     </script>
    </body>

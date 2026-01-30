@@ -627,8 +627,8 @@ FOOTER
 }
 .ft-socials img {
   color: #fff;
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
 }
 
 .ft-contact p {
@@ -2139,7 +2139,8 @@ FOOTER
 }
 
 .lgx-arrow {
-  font-size: 1rem;
+  height:1rem;
+  width:1rem;
 }
 
 /* =========================
@@ -2609,8 +2610,6 @@ FOOTER
   }
   .ft-socials img {
     color: #fff;
-    width: 20px;
-    height: 20px;
   }
   .ol-testimonial-title {
     font-size: 20px;

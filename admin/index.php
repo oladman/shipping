@@ -8,35 +8,38 @@
                 <!DOCTYPE html>
                 <html lang="en">
                 <?php
-include("../connection/connect.php");
-error_reporting(0);
-session_start();
-if(isset($_POST['submit']))
-{
-	$username = $_POST['username'];
-	$password = $_POST['password'];
-	
-	if(!empty($_POST["submit"])) 
-     {
-	$loginquery ="SELECT * FROM admin WHERE username='$username' && password='".md5($password)."'";
-	$result=mysqli_query($db, $loginquery);
-	$row=mysqli_fetch_array($result);
-	
-	                        if(is_array($row))
-								{
-                                    	$_SESSION["adm_id"] = $row['adm_id'];
-										header("refresh:1;url=dashboard.php");
-	                            } 
-							else
-							    {
-										echo "<script>alert('Invalid Username or Password!');</script>"; 
-                                }
-	 }
-	
-	
-}
-
-?>
+                include("../connection/connect.php");
+                $message = "";
+                $success = "";
+                if (session_status() === PHP_SESSION_NONE) {
+                    session_start();
+                }                if(isset($_POST['submit']))
+                {
+                	$username = $_POST['username'];
+                	$password = $_POST['password'];
+                	
+                	if(!empty($_POST["submit"])) 
+                     {
+                	$loginquery ="SELECT * FROM admin WHERE username='$username' AND password='" . md5($password) . "'";
+                	$result=mysqli_query($conn, $loginquery);
+                	$row=mysqli_fetch_array($result);
+                	
+                	                        if(is_array($row))
+                								{
+                                                    	$_SESSION["adm_id"] = $row['adm_id'];
+                										header("Location: dashboard.php");
+                                                        exit();
+                	                            } 
+                							else
+                							    {
+                                                    $message = "Invalid Username or Password!";
+                                                }
+                	 }
+                	
+                	
+                }
+                
+                ?>
                  <!--/*!
  * Author Name: Oladimeji Seunayo Ezekiel.
  * Twitter Link: https://twitter.com/iam_oladman">
@@ -47,7 +50,7 @@ if(isset($_POST['submit']))
 
                 <head>
                     <meta charset="UTF-8">
-                    <title>Oceanlogistix Admin Login</title>
+                    <title>Marinex | Admin Login</title>
 
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 

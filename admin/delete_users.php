@@ -1,23 +1,24 @@
-                <!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * Github Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->
-                <?php
+<?php
 include("../connection/connect.php");
-error_reporting(0);
-session_start();
+error_reporting(E_ALL);
 
-mysqli_query($db,"DELETE FROM users WHERE u_id = '".$_GET['user_del']."'");
-header("location:all_users.php");  
+if (isset($_GET['user_del'])) {
+    $user_del_id = $_GET['user_del'];
 
+    // Delete the user from the database
+    $sql_delete = "DELETE FROM users WHERE u_id = ?";
+    $stmt_delete = mysqli_prepare($conn, $sql_delete);
+    mysqli_stmt_bind_param($stmt_delete, "i", $user_del_id);
+
+    if (mysqli_stmt_execute($stmt_delete)) {
+        $_SESSION['success_message'] = "User deleted successfully.";
+    } else {
+        $_SESSION['error_message'] = "Error deleting user: " . mysqli_error($conn);
+    }
+} else {
+    $_SESSION['error_message'] = "No user ID provided.";
+}
+
+header("Location: all_users.php");
+exit();
 ?>
-                <!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * Github Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->

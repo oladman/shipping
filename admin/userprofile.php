@@ -1,237 +1,181 @@
-                <!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * Github Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->
-                <?php
-
+<?php
+include("include/header.php");
 include("../connection/connect.php");
-error_reporting(0);
-session_start();
-if(strlen($_SESSION['user_id'])==0)
-  { 
-header('location:../login.php');
+error_reporting(E_ALL);
+
+$user_id = $_GET['user_id'] ?? null;
+
+// Fetch user data
+if ($user_id) {
+    $sql = "SELECT * FROM users WHERE u_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $user_id);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $user = mysqli_fetch_assoc($result);
+
+    if (!$user) {
+        // Redirect if user not found
+        header("Location: all_users.php");
+        exit();
+    }
+} else {
+    header("Location: all_users.php");
+    exit();
 }
-else
-{
-  if(isset($_POST['update']))
-  {
-$form_id=$_GET['form_id'];
-$status=$_POST['status'];
-$remark=$_POST['remark'];
-$query=mysqli_query($db,"insert into remark(frm_id,status,remark) values('$form_id','$status','$remark')");
-$sql=mysqli_query($db,"update users_orders set status='$status' where o_id='$form_id'");
-
-echo "<script>alert('form details updated successfully');</script>";
-
-  }
-
- ?>
-                <script language="javascript" type="text/javascript">
-function f2() {
-    window.close();
-}
-ser
-
-function f3() {
-    window.print();
-}
-                </script>
-                <!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * Github Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->
-
-                <head>
-                    <meta charset="utf-8">
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                    <meta name="viewport" content="width=device-width, initial-scale=1">
-                    <meta name="description" content="">
-                    <meta name="author" content="">
-                    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-                    <title>User Profile</title>
-                    <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-                    <link href="css/helper.css" rel="stylesheet">
-                    <link href="css/style.css" rel="stylesheet">
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-                    <style type="text/css" rel="stylesheet">
-                    .indent-small {
-                        margin-left: 5px;
-                    }
-
-                    .form-group.internal {
-                        margin-bottom: 0;
-                    }
-
-                    .dialog-panel {
-                        margin: 10px;
-                    }
-
-                    .datepicker-dropdown {
-                        z-index: 200 !important;
-                    }
-
-                    .panel-body {
-                        background: #e5e5e5;
-                        background: -moz-radial-gradient(center, ellipse cover, #e5e5e5 0%, #ffffff 100%);
-                        background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #e5e5e5), color-stop(100%, #ffffff));
-                        background: -webkit-radial-gradient(center, ellipse cover, #e5e5e5 0%, #ffffff 100%);
-                        background: -o-radial-gradient(center, ellipse cover, #e5e5e5 0%, #ffffff 100%);
-                        background: -ms-radial-gradient(center, ellipse cover, #e5e5e5 0%, #ffffff 100%);
-                        background: radial-gradient(ellipse at center, #e5e5e5 0%, #ffffff 100%);
-                        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5e5e5', endColorstr='#ffffff', GradientType=1);
-                        font: 600 15px "Open Sans", Arial, sans-serif;
-                    }
-
-                    label.control-label {
-                        font-weight: 600;
-                        color: #777;
-                    }
-
-                    table {
-                        width: 650px;
-                        border-collapse: collapse;
-                        margin: auto;
-                        margin-top: 50px;
-                    }
-
-                    tr:nth-of-type(odd) {
-                        background: #eee;
-                    }
-
-                    th {
-                        background: #004684;
-                        color: white;
-                        font-weight: bold;
-                    }
-
-                    td,
-                    th {
-                        padding: 10px;
-                        border: 1px solid #ccc;
-                        text-align: left;
-                        font-size: 14px;
-                    }
-                    </style>
-                </head>
-
-                <body>
-
-                    <div style="margin-left:50px;">
-                        <form name="updateticket" id="updatecomplaint" method="post">
-
-
-
-
-                            <table border="0" cellspacing="0" cellpadding="0">
-
-                                <?php 
-
-$ret1=mysqli_query($db,"select * FROM users_orders where o_id='".$_GET['newform_id']."'");
-$ro=mysqli_fetch_array($ret1);
-$ret2=mysqli_query($db,"select * FROM users where u_id='".$ro['u_id']."'");
-
-while($row=mysqli_fetch_array($ret2))
-{
 ?>
 
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+        <nav class="app-header navbar navbar-expand bg-body">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
+                            <i class="bi bi-list"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-md-block">
+                        <a href="dashboard.php" class="nav-link">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown user-menu">
+                                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                                <img src="assets/icons/manager.png" class="user-image rounded-circle shadow" alt="User Image" />
+                                                <span class="d-none d-md-inline">Admin</span>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                                                <li class="user-header text-bg-primary">
+                                                    <img src="assets/icons/manager.png" class="rounded-circle shadow" alt="User Image" />
+                                                    <p>
+                                                        Admin 
+                                                        <small></small>
+                                                    </p>
+                                                </li>
+                                                <li class="user-footer">
+                                                    <a href="#" class="btn btn-outline-secondary">Profile</a>
+                                                    <a href="logout.php" class="btn btn-outline-danger float-end">Sign out</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                </ul>
+            </div>
+        </nav>
+        <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+            <div class="sidebar-brand">
+                <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 500 120"
+    class="logo-svg"
+    aria-label="Marinex logo"
+  >
+                        <!-- Orange Square with Plane Icon -->
+                        <g transform="translate(10,20)">
+                            <!-- Square -->
+                            <rect x="0" y="0" width="80" height="70" rx="10"
+                                fill="none" stroke="#FF7A00" stroke-width="2" />
 
+                            <!-- Plane Icon -->
+                            <path d="M20 50 L40 40 L20 10 L30 10 L50 35 L70 25 L75 30 L50 45 L30 60 L20 60 Z"
+                                fill="#fff" />
+                        </g>
 
-
-                                <tr>
-                                    <td colspan="2"><b><?php echo $row['f_name'];?>'s profile</b></td>
-
-                                </tr>
-
-
-                                <tr>
-                                    <td>&nbsp;</td>
-                                    <td>&nbsp;</td>
-                                </tr>
-                                <tr height="50">
-                                    <td><b>Reg Date:</b></td>
-                                    <td><?php echo htmlentities($row['date']); ?></td>
-                                </tr>
-
-                                <tr height="50">
-                                    <td><b>First Name:</b></td>
-                                    <td><?php echo htmlentities($row['f_name']); ?></td>
-                                </tr>
-                                <tr height="50">
-                                    <td><b>Last Name:</b></td>
-                                    <td><?php echo htmlentities($row['l_name']); ?></td>
-                                </tr>
-
-
-
-                                <tr height="50">
-                                    <td><b>User Email:</b></td>
-                                    <td><?php echo htmlentities($row['email']); ?></td>
-                                </tr>
-
-                                <tr height="50">
-                                    <td><b>User Phone:</b></td>
-                                    <td><?php echo htmlentities($row['phone']); ?></td>
-                                </tr>
-
-
-
-                                <!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * Github Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->
-
-
-
-
-
-
-
-                                <tr height="50">
-                                    <td><b>Status:</b></td>
-                                    <td><?php if($row['status']==1)
-      { echo "<div class='btn btn-primary'>Active</div>";
-} else{
-  echo "<div class='btn btn-danger'>Block</div>";
-}
-        ?></td>
-                                </tr>
-
-                                <tr>
-
-                                    <td colspan="2">
-                                        <input name="Submit2" type="submit" class="btn btn-danger" value="Close this window " onClick="return f2();" style="cursor: pointer;" />
-                                    </td>
-                                </tr>
-
-                                <?php } 
-
- 
-    ?>
-                                <!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * Github Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->
-
-
-                            </table>
-                        </form>
+                        <!-- Text -->
+                        <text x="120" y="70"
+                            font-family="Montserrat, Arial, sans-serif"
+                            font-size="46"
+                            font-weight="700"
+                            fill="#fff">
+                            Marinex
+                        </text>
+                    </svg>
+            </div>
+            <div class="sidebar-wrapper">
+                <nav class="mt-2">
+                    <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation" aria-label="Main navigation" data-accordion="false" id="navigation">
+                        <li class="nav-item">
+                            <a href="dashboard.php" class="nav-link"><i class="nav-icon bi bi-speedometer"></i><p>Dashboard</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link"><i class="nav-icon bi bi-truck-flatbed"></i><p>Shipping<i class="nav-arrow bi bi-chevron-right"></i></p></a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item"><a href="all_shipping.php" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>All Shipping</p></a></li>
+                                <li class="nav-item"><a href="add_shipping.php" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>Create Shipping</p></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link"><i class="nav-icon bi bi-pencil-square"></i><p>Update Shipping<i class="nav-arrow bi bi-chevron-right"></i></p></a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item"><a href="update_status.php" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>Update Shipping Status</p></a></li>
+                                <li class="nav-item"><a href="all_shipping_updates.php" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>All Shipping Updates</p></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link"><i class="nav-icon bi bi-journal-text"></i><p>Ship Blog<i class="nav-arrow bi bi-chevron-right"></i></p></a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item"><a href="all_blogs.php" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>All Blog</p></a></li>
+                                <li class="nav-item"><a href="add_blog.php" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>Add blog</p></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="all_users.php" class="nav-link active"><i class="nav-icon bi bi-people"></i><p>Users</p></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <main class="app-main">
+            <div class="app-content-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3 class="mb-0">User Profile</h3>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-end">
+                                <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
+                                <li class="breadcrumb-item"><a href="all_users.php">Users</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                            </ol>
+                        </div>
                     </div>
-
-                </body>
-
-                </html>
-
-                <?php } ?>
+                </div>
+            </div>
+            <div class="app-content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card card-primary card-outline">
+                                <div class="card-body box-profile">
+                                    <div class="text-center">
+                                        <img class="profile-user-img img-fluid img-circle" src="assets/img/user2-160x160.jpg" alt="User profile picture">
+                                    </div>
+                                    <h3 class="profile-username text-center"><?php echo htmlspecialchars($user['f_name'] . ' ' . $user['l_name']); ?></h3>
+                                    <p class="text-muted text-center"><?php echo htmlspecialchars($user['username']); ?></p>
+                                    <ul class="list-group list-group-unbordered mb-3">
+                                        <li class="list-group-item">
+                                            <b>Email</b> <a class="float-right"><?php echo htmlspecialchars($user['email']); ?></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Phone</b> <a class="float-right"><?php echo htmlspecialchars($user['phone']); ?></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Address</b> <a class="float-right"><?php echo htmlspecialchars($user['address']); ?></a>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <b>Registration Date</b> <a class="float-right"><?php echo htmlspecialchars($user['date']); ?></a>
+                                        </li>
+                                    </ul>
+                                    <a href="update_users.php?user_upd=<?php echo $user['u_id']; ?>" class="btn btn-primary btn-block"><b>Edit Profile</b></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <?php include("include/footer.php"); ?>
+    </div>
+</body>
+</html>

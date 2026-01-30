@@ -1,297 +1,234 @@
-<!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * GigHub Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->                
+<?php
+include("include/header.php");
+include("../connection/connect.php");
+error_reporting(E_ALL);
 
-<!DOCTYPE html>
-                <html lang="en">
-                <?php
-                include("../connection/connect.php");
-                error_reporting(0);
-                session_start();
+$error = '';
+$success = '';
+$shipping_upd = $_GET['shipping_upd'] ?? null;
 
+// Fetch the shipping status for editing
+if ($shipping_upd) {
+    $sql = "SELECT * FROM ship_status WHERE ss_id = ?";
+    $stmt = mysqli_prepare($conn, $sql);
+    mysqli_stmt_bind_param($stmt, "i", $shipping_upd);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+    $status = mysqli_fetch_assoc($result);
 
+    if (!$status) {
+        // Redirect if status not found
+        header("Location: all_shipping_updates.php");
+        exit();
+    }
+} else {
+    header("Location: all_shipping_updates.php");
+    exit();
+}
 
+// Handle form submission for updating the status
+if (isset($_POST['submit'])) {
+    $required_fields = ['ss_date', 'ss_time', 'ss_location', 'ss_comment', 'ss_status', 's_tracking'];
+    $empty_fields = [];
+    foreach ($required_fields as $field) {
+        if (empty($_POST[$field])) {
+            $empty_fields[] = $field;
+        }
+    }
 
-                if (isset($_POST['submit']))        
-                {
+    if (!empty($empty_fields)) {
+        $error = '<div class="alert alert-danger">The following fields are required: ' . implode(', ', $empty_fields) . '</div>';
+    } else {
+        $update_sql = "UPDATE ship_status SET ss_date = ?, ss_time = ?, ss_location = ?, ss_comment = ?, ss_status = ?, s_tracking = ? WHERE ss_id = ?";
+        $update_stmt = mysqli_prepare($conn, $update_sql);
+        mysqli_stmt_bind_param(
+            $update_stmt,
+            "ssssssi",
+            $_POST['ss_date'],
+            $_POST['ss_time'],
+            $_POST['ss_location'],
+            $_POST['ss_comment'],
+            $_POST['ss_status'],
+            $_POST['s_tracking'],
+            $shipping_upd
+        );
 
+        if (mysqli_stmt_execute($update_stmt)) {
+            $success = '<div class="alert alert-success">Shipping status updated successfully.</div>';
+            // Refresh status data
+            $sql_refresh = "SELECT * FROM ship_status WHERE ss_id = ?";
+            $stmt_refresh = mysqli_prepare($conn, $sql_refresh);
+            mysqli_stmt_bind_param($stmt_refresh, "i", $shipping_upd);
+            mysqli_stmt_execute($stmt_refresh);
+            $result_refresh = mysqli_stmt_get_result($stmt_refresh);
+            $status = mysqli_fetch_assoc($result_refresh);
+        } else {
+            $error = '<div class="alert alert-danger">Error updating status: ' . mysqli_error($conn) . '</div>';
+        }
+    }
+}
+?>
 
+<body class="layout-fixed sidebar-expand-lg bg-body-tertiary">
+    <div class="app-wrapper">
+        <nav class="app-header navbar navbar-expand bg-body">
+            <div class="container-fluid">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
+                            <i class="bi bi-list"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item d-none d-md-block">
+                        <a href="dashboard.php" class="nav-link">Home</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown user-menu">
+                                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                                <img src="assets/icons/manager.png" class="user-image rounded-circle shadow" alt="User Image" />
+                                                <span class="d-none d-md-inline">Admin</span>
+                                            </a>
+                                            <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
+                                                <li class="user-header text-bg-primary">
+                                                    <img src="assets/icons/manager.png" class="rounded-circle shadow" alt="User Image" />
+                                                    <p>
+                                                        Admin 
+                                                        <small></small>
+                                                    </p>
+                                                </li>
+                                                <li class="user-footer">
+                                                    <a href="#" class="btn btn-outline-secondary">Profile</a>
+                                                    <a href="logout.php" class="btn btn-outline-danger float-end">Sign out</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                </ul>
+            </div>
+        </nav>
+        <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+            <div class="sidebar-brand">
+                <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 500 120"
+    class="logo-svg"
+    aria-label="Marinex logo"
+  >
+                        <!-- Orange Square with Plane Icon -->
+                        <g transform="translate(10,20)">
+                            <!-- Square -->
+                            <rect x="0" y="0" width="80" height="70" rx="10"
+                                fill="none" stroke="#FF7A00" stroke-width="2" />
 
+                            <!-- Plane Icon -->
+                            <path d="M20 50 L40 40 L20 10 L30 10 L50 35 L70 25 L75 30 L50 45 L30 60 L20 60 Z"
+                                fill="#fff" />
+                        </g>
 
-
-
-
-                    if ( empty($_POST['ss_location']) || empty($_POST['ss_comment']) || empty($_POST['ss_status']) || empty($_POST['ss_date']) || empty($_POST['ss_time']) ) {
-                        $error =     '<div class="alert alert-danger alert-dismissible fade show">
-																<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-																<strong>All fields Must be Fillup!</strong>
-															</div>';
-                    }else {
-
-                        $sql = "update ship_status set ss_location='$_POST[ss_location]',ss_comment='$_POST[ss_comment]',ss_status='$_POST[ss_status]',ss_date='$_POST[ss_date]',ss_time='$_POST[ss_time]' where ss_id='$_GET[shipping_upd]'" ;  
-                        mysqli_query($conn, $sql);
-                        
-
-                        $success =     '<div class="alert alert-success alert-dismissible fade show">
-                                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                        <strong>Record Updated!</strong>
-                                                    </div>';
-                    }
-                }
-
-
-
-
-
-
-
-
-                ?>
-                
-
-
-                <head>
-                    <meta charset="utf-8">
-                    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-                    <meta name="viewport" content="width=device-width, initial-scale=1">
-                    <meta name="description" content="">
-                    <meta name="author" content="">
-                    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-                    <title>Update Shipping</title>
-                    <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-                    <link href="css/helper.css" rel="stylesheet">
-                    <link href="css/style.css" rel="stylesheet">
-                    <script src="https://kit.fontawesome.com/41097bf629.js" crossorigin="anonymous"></script>
-
-                </head>
-
-                <body class="fix-header">
-
-                    <div class="preloader">
-                        <svg class="circular" viewBox="25 25 50 50">
-                            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
-                        </svg>
+                        <!-- Text -->
+                        <text x="120" y="70"
+                            font-family="Montserrat, Arial, sans-serif"
+                            font-size="46"
+                            font-weight="700"
+                            fill="#fff">
+                            Marinex
+                        </text>
+                    </svg>
+            </div>
+            <div class="sidebar-wrapper">
+                <nav class="mt-2">
+                    <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="navigation" aria-label="Main navigation" data-accordion="false" id="navigation">
+                        <li class="nav-item">
+                            <a href="dashboard.php" class="nav-link"><i class="nav-icon bi bi-speedometer"></i><p>Dashboard</p></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link"><i class="nav-icon bi bi-truck-flatbed"></i><p>Shipping<i class="nav-arrow bi bi-chevron-right"></i></p></a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item"><a href="all_shipping.php" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>All Shipping</p></a></li>
+                                <li class="nav-item"><a href="add_shipping.php" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>Create Shipping</p></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item menu-open">
+                            <a href="#" class="nav-link active"><i class="nav-icon bi bi-pencil-square"></i><p>Update Shipping<i class="nav-arrow bi bi-chevron-right"></i></p></a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item"><a href="update_status.php" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>Update Shipping Status</p></a></li>
+                                <li class="nav-item"><a href="all_shipping_updates.php" class="nav-link active"><i class="nav-icon bi bi-circle"></i><p>All Shipping Updates</p></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link"><i class="nav-icon bi bi-journal-text"></i><p>Ship Blog<i class="nav-arrow bi bi-chevron-right"></i></p></a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item"><a href="all_blogs.php" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>All Blog</p></a></li>
+                                <li class="nav-item"><a href="add_blog.php" class="nav-link"><i class="nav-icon bi bi-circle"></i><p>Add blog</p></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a href="all_users.php" class="nav-link"><i class="nav-icon bi bi-people"></i><p>Users</p></a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </aside>
+        <main class="app-main">
+            <div class="app-content-header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h3 class="mb-0">Edit Shipping Status</h3>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-end">
+                                <li class="breadcrumb-item"><a href="dashboard.php">Home</a></li>
+                                <li class="breadcrumb-item"><a href="all_shipping_updates.php">Shipping Updates</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Edit Status</li>
+                            </ol>
+                        </div>
                     </div>
-                    
-
-                    <div id="main-wrapper">
-
-                        <div class="header">
-                            <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                                <div class="navbar-header">
-                                    <a class="navbar-brand" href="dashboard.php">
-
-                                    <span><img src="images/turbo.png" height="60px" lenght="60px" alt="homepage" class="dark-logo" /></span>
-                                    </a>
-                                </div>
-                                <div class="navbar-collapse">
-
-                                    <ul class="navbar-nav mr-auto mt-md-0">
-                                    </ul>
-
-                                    <ul class="navbar-nav my-lg-0">
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="images/bookingSystem/user-icn.png" alt="user" class="profile-pic" /></a>
-                                            <div class="dropdown-menu dropdown-menu-right animated zoomIn">
-                                                <ul class="dropdown-user">
-                                                    <li><a href="logout.php"><i class="fa fa-power-off"></i> Logout</a></li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
+                </div>
+            </div>
+            <div class="app-content">
+                <div class="container-fluid">
+                    <?php echo $error; echo $success; ?>
+                    <div class="card card-outline-primary">
+                        <div class="card-header">
+                            <h4 class="m-b-0 text-white">Edit Shipping Status</h4>
                         </div>
-                        
-
-                        <div class="left-sidebar">
-
-                            <div class="scroll-sidebar">
-
-                            <nav class="sidebar-nav">
-                                    <ul id="sidebarnav">
-                                        <li class="nav-devider"></li>
-                                        <li class="nav-label">Home</li>
-                                        <li> <a href="dashboard.php"><i class="fa-solid fa-gauge"></i><span class="bold-p">Dashboard</span></a></li>
-                                        <li class="nav-label">Log</li>
-                                       
-                                  
-                                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa-solid fa-plane-departure bold-p " aria-hidden="true" ></i><span class="hide-menu bold-p">Shipping</span></a>
-                                            <ul aria-expanded="false" class="collapse">
-                                                <li><a href="all_shipping.php">All Shipping</a></li>
-                                                <li><a href="add_shipping.php">Create Shipping</a></li>
-                                            
-                                            </ul>
-                                        </li>
-                                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa-solid fa-pen-to-square bold-p" aria-hidden="true"></i><span class="hide-menu bold-p"> Update Shipping</span></a>
-                                            <ul aria-expanded="false" class="collapse">
-                                                <li><a href="update_status.php">Update Shipping Status</a></li>
-                                                <li><a href="all_shipping_updates.php">All Shipping Updates</a></li>
-                                                
-
-
-
-                                            </ul>
-                                        </li>
-
-                                        <li> <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa-solid fa-blog  bold-p" aria-hidden="true"></i><span class="hide-menu bold-p"> Ship Blog</span></a>
-                                            <ul aria-expanded="false" class="collapse">
-                                                <li><a href="all_blogs.php">All Blog</a></li>
-                                                <li><a href="add_blog.php">Add Blog</a></li>
-                                                
-
-
-
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-
-                        </div>
-
-                        <div class="page-wrapper">
-                       
-                            <div style="padding-top: 10px;">
-                                <marquee onMouseOver="this.stop()" onMouseOut="this.start()"> <a href="https://www.youtube.com/">OLADMAN</a> is the sole owner of this script. For any of your problems contact me on twitter <a href="https://twitter.com/iam_oladman">Twitter</a> Github</marquee>
-                            </div>
-
-                            
-
-
-                            <div class="container-fluid">
-
-
-
-                                <?php echo $error;
-                                echo $success; ?>
-
-
-<div class="col-lg-12">
-                                    <div class="card card-outline-primary">
-                                        <div class="card-header">
-                                            <h4 class="m-b-0 text-white">Edit Shipping Status</h4>
+                        <div class="card-body">
+                            <form action='' method='post'>
+                                <div class="form-body">
+                                    <div class="row p-t-20">
+                                        <div class="col-md-6 mb-3"><label class="control-label">* Location</label><input type="text" name="ss_location" class="form-control" value="<?php echo htmlspecialchars($status['ss_location']); ?>"></div>
+                                        <div class="col-md-6 mb-3"><label class="control-label">* Comment</label><input type="text" name="ss_comment" class="form-control" value="<?php echo htmlspecialchars($status['ss_comment']); ?>"></div>
+                                    </div>
+                                    <div class="row p-t-20">
+                                        <div class="col-md-6 mb-3"><label class="control-label">Status:</label>
+                                            <select name="ss_status" class="form-control custom-select">
+                                                <option <?php if ($status['ss_status'] == 'Received') echo 'selected'; ?>>Received</option>
+                                                <option <?php if ($status['ss_status'] == 'In Transit') echo 'selected'; ?>>In Transit</option>
+                                                <option <?php if ($status['ss_status'] == 'On-Hold') echo 'selected'; ?>>On-Hold</option>
+                                                <option <?php if ($status['ss_status'] == 'To-Pay') echo 'selected'; ?>>To-Pay</option>
+                                                <option <?php if ($status['ss_status'] == 'Out for Delivery') echo 'selected'; ?>>Out for Delivery</option>
+                                                <option <?php if ($status['ss_status'] == 'Delivered') echo 'selected'; ?>>Delivered</option>
+                                            </select>
                                         </div>
-                                        <div class="card-body">
-                                            <form action='' method='post' enctype="application/x-www-form-urlencoded">
-                                                <div class="form-body">
-                                                <?php $qml = "select * from ship_status where ss_id='$_GET[shipping_upd]'";
-                                                    $rest = mysqli_query($conn, $qml);
-                                                    $roww = mysqli_fetch_array($rest);
-                                                    ?>
-                                    
-
-
-                                                    <hr>
-                                                    <div class="row p-t-20">
-                                                        <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <label class="control-label">* Location</label>
-                                                            
-                                                                <input type="text" name="ss_location" value="<?php echo $roww['ss_location']; ?>" class="form-control">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <div class="form-group has-danger">
-                                                                <label class="control-label">* Comment</label>
-                                                               
-                                                                <input type="text" name="ss_comment" value="<?php echo $roww['ss_comment']; ?>" class="form-control">
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="row p-t-20">
-                                                        <div class="col-md-6">
-                                                        <div class="form-group">
-                                                                <label class="control-label">Status:</label>
-                                                                <select name="ss_status" class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">  
-                                                                    <option value="Received">Order Received</option>
-                                                                    <option value="In Transit">In Transit</option>
-                                                                    <option value="On-Hold">On-Hold</option>
-                                                                    <option value="To-Pay">To-Pay</option>
-                                                                    <option value="Out for Delivery">Out for Delivery</option>
-                                                                    <option value="Delivered">Delivered</option>
-                                                                    
-                                                                </select>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <div class="form-group has-danger">
-                                                                <label class="control-label">* Tracking</label>
-                                                    
-                                                                <input type="text" name="s_tracking" value="<?php echo $roww['s_tracking']; ?>" class="form-control">
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="row p-t-20">
-                                                        <div class="col-md-6">
-                                                        <div class="form-group has-danger">
-                                                                <label class="control-label">* Date</label>
-                                                               
-                                                                <input type="date" name="ss_date" value="<?php echo $roww['ss_date']; ?>" class="form-control">
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-md-6">
-                                                            <div class="form-group has-danger">
-                                                                <label class="control-label">* Time</label>
-                                                                <input type="time" name="ss_time" value="<?php echo $roww['ss_time']; ?>" class="form-control">
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-
-                                                   
-                                                </div>
-                                                <div class="form-actions">
-                                                    <input type="submit" name="submit" class="btn btn-primary" value="Save">
-                                                    <a href="add_menu.php" class="btn btn-inverse">Cancel</a>
-                                                </div>
-                                            </form>
-                                        </div>
-
-                    
-                                         
-                                        </div>
+                                        <div class="col-md-6 mb-3"><label class="control-label">* Tracking</label><input type="text" name="s_tracking" class="form-control" value="<?php echo htmlspecialchars($status['s_tracking']); ?>"></div>
+                                    </div>
+                                    <div class="row p-t-20">
+                                        <div class="col-md-6 mb-3"><label class="control-label">* Date</label><input type="date" name="ss_date" class="form-control" value="<?php echo htmlspecialchars($status['ss_date']); ?>"></div>
+                                        <div class="col-md-6 mb-3"><label class="control-label">* Time</label><input type="time" name="ss_time" class="form-control" value="<?php echo htmlspecialchars($status['ss_time']); ?>"></div>
                                     </div>
                                 </div>
-
-                                <?php include "include/footer.php" ?>
-
-                            </div>
-
+                                <div class="form-actions">
+                                    <button type="submit" name="submit" class="btn btn-primary">Save Changes</button>
+                                    <a href="all_shipping_updates.php" class="btn btn-inverse">Cancel</a>
+                                </div>
+                            </form>
                         </div>
-
                     </div>
-
-                    </div>
-
-                    <script src="js/lib/jquery/jquery.min.js"></script>
-                    <script src="js/lib/bootstrap/js/popper.min.js"></script>
-                    <script src="js/lib/bootstrap/js/bootstrap.min.js"></script>
-                    <script src="js/jquery.slimscroll.js"></script>
-                    <script src="js/sidebarmenu.js"></script>
-                    <script src="js/lib/sticky-kit-master/dist/sticky-kit.min.js"></script>
-                    <script src="js/custom.min.js"></script>
-
-                </body>
-                
-
-                </html>
-
-
-
-                <!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * GigHub Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->
+                </div>
+            </div>
+        </main>
+        <?php include("include/footer.php"); ?>
+    </div>
+</body>
+</html>

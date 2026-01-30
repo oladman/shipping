@@ -10,7 +10,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Login | Oceanlogistix - Best Shippping for all global services</title>
+    <title>Login | Marinex - Best Shippping for all global services</title>
     <meta name="description" content="Pakcages shipping, envelope shipping, track, ship, global shipping, best shipping company">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">

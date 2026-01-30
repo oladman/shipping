@@ -87,7 +87,7 @@ if(isset($_POST['submit'] ))
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="#">
-    <title>Register & Ship | Oceanlogistix - Best Shippping for all global services</title>
+    <title>Register & Ship | Marinex - Best Shippping for all global services</title>
     <meta name="description" content="Pakcages shipping, envelope shipping, track, ship, global shipping, best shipping company">
     <link href="css/animate.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">

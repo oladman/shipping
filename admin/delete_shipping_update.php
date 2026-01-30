@@ -1,16 +1,24 @@
 <?php
 include("../connection/connect.php");
-error_reporting(0);
-session_start();
+error_reporting(E_ALL);
 
-mysqli_query($db,"DELETE FROM ship_status WHERE ss_id = '".$_GET['shipping_del']."'");
-header("location:all_shipping_updates.php");  
+if (isset($_GET['shipping_del'])) {
+    $shipping_del_id = $_GET['shipping_del'];
 
+    // Delete the shipping update from the database
+    $sql_delete = "DELETE FROM ship_status WHERE ss_id = ?";
+    $stmt_delete = mysqli_prepare($conn, $sql_delete);
+    mysqli_stmt_bind_param($stmt_delete, "i", $shipping_del_id);
+
+    if (mysqli_stmt_execute($stmt_delete)) {
+        $_SESSION['success_message'] = "Shipping update deleted successfully.";
+    } else {
+        $_SESSION['error_message'] = "Error deleting shipping update: " . mysqli_error($conn);
+    }
+} else {
+    $_SESSION['error_message'] = "No shipping update ID provided.";
+}
+
+header("Location: all_shipping_updates.php");
+exit();
 ?>
- <!--/*!
- * Author Name: Oladimeji Seunayo Ezekiel.
- * Twitter Link: https://twitter.com/iam_oladman">
- * GigHub Link: https://github.com/oladman">
- for any React, Next.js, PHP, Typescript Laravel, Javascript, Node.JS, Express.JS, MongoDB, SQL & PostgreSQL work contact me @ oladimejiseunayo@gmail.com
- * Visit My Website : https://oladimejiseunayo.netlify.app
- */ -->
